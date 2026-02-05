@@ -9,7 +9,7 @@ export function HeroSection() {
       <div className="absolute inset-0 z-0">
         <Image
           src="/wedding-5.jpg"
-          alt="AlbaExperience - Elegant wedding photography on staircase"
+          alt="AlbaExperience - Professional photography for weddings, graduations, and events"
           fill
           className="object-cover object-top"
           priority
@@ -23,10 +23,10 @@ export function HeroSection() {
           AlbaExperience
         </p>
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-light text-primary-foreground mb-6 leading-tight text-balance">
-          Capturing Your Love Story
+          Capturing Your Most Precious Moments
         </h1>
         <p className="text-lg md:text-xl text-primary-foreground/90 mb-10 max-w-2xl mx-auto leading-relaxed">
-          Elegant, timeless, and authentic. Capturing the raw emotions, quiet moments, and grand celebrations that make your day unforgettable.
+          Elegant, timeless, and authentic. From weddings and graduations to portraits and special events, we capture the emotions that define your story.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button
