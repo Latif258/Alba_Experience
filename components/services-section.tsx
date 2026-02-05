@@ -19,7 +19,7 @@ const services = [
     icon: Users,
     title: "Family Portraits",
     description: "Timeless family photography that freezes fleeting moments. Perfect for annual cards, maternity, newborn, or generational gatherings.",
-    image: "/images/family.png"
+    image: "/images/family-moment-1.jpg"
   },
   {
     icon: Camera,
