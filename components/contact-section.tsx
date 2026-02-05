@@ -1,5 +1,10 @@
+"use client"
+
 import { Mail, Phone, MapPin, Instagram } from "lucide-react"
+
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
+
 
 const contactInfo = [
   {
@@ -72,6 +77,20 @@ export function ContactSection() {
 
           {/* Quick Message */}
           <div className="bg-card p-8 md:p-12 border border-border">
+            <div className="mb-8 p-6 bg-primary/5 border border-primary/20 text-center">
+              <h3 className="text-xl font-light text-foreground mb-4">
+                Message us on WhatsApp
+              </h3>
+              <Button
+                asChild
+                className="w-full bg-[#25D366] text-white hover:bg-[#25D366]/90 tracking-widest uppercase text-sm py-4"
+              >
+                <Link href="https://wa.me/233530458823" target="_blank">
+                  Open WhatsApp Chat
+                </Link>
+              </Button>
+            </div>
+
             <h3 className="text-2xl font-light text-foreground mb-6">
               Send a Quick Message
             </h3>

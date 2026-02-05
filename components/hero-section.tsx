@@ -42,7 +42,7 @@ export function HeroSection() {
             variant="outline"
             className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 tracking-widest uppercase text-sm px-8 py-6 bg-transparent"
           >
-            <Link href="#booking">Book a Consultation</Link>
+            <Link href="https://wa.me/233530458823" target="_blank">Book via WhatsApp</Link>
           </Button>
         </div>
       </div>

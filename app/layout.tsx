@@ -3,6 +3,8 @@ import type { Metadata } from 'next'
 import { Cormorant_Garamond, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import { WhatsAppFAB } from "@/components/whatsapp-fab"
+
 
 const _cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -29,6 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`font-sans antialiased`}>
         {children}
+        <WhatsAppFAB />
         <Analytics />
       </body>
     </html>

@@ -1,6 +1,8 @@
 "use client"
 
 import React from "react"
+import Link from "next/link"
+
 
 import { useState } from "react"
 import { Calendar } from "@/components/ui/calendar"
@@ -86,6 +88,26 @@ export function BookingSection() {
           <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             I would love to hear about your celebration or project. Schedule a consultation
             to discuss your vision and explore how we might work together.
+          </p>
+        </div>
+
+        {/* WhatsApp CTA */}
+        <div className="mb-12 text-center bg-card p-8 border border-primary/20 shadow-sm">
+          <h3 className="text-2xl font-light mb-4 text-foreground">Fastest Way to Book</h3>
+          <p className="text-muted-foreground mb-6">
+            Messaging us on WhatsApp is the quickest way to check availability and get a response.
+          </p>
+          <Button
+            asChild
+            size="lg"
+            className="bg-[#25D366] text-white hover:bg-[#25D366]/90 tracking-widest uppercase text-sm px-8 py-6"
+          >
+            <Link href="https://wa.me/233530458823" target="_blank">
+              Chat on WhatsApp
+            </Link>
+          </Button>
+          <p className="mt-4 text-xs tracking-widest uppercase text-muted-foreground">
+            Alternatively, fill out the form below
           </p>
         </div>
 

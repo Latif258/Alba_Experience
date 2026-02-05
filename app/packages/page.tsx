@@ -311,7 +311,12 @@ function PackageCard({ pkg }: { pkg: any }) {
             </CardContent>
             <CardFooter>
                 <Button asChild className="w-full" size="lg">
-                    <Link href="/#contact">Book This Package</Link>
+                    <Link
+                        href={`https://wa.me/233530458823?text=${encodeURIComponent(`Hi Alba Experience, I'm interested in booking the ${pkg.name} package. Could you please provide more information?`)}`}
+                        target="_blank"
+                    >
+                        Book This Package
+                    </Link>
                 </Button>
             </CardFooter>
         </Card>
