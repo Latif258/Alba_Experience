@@ -22,7 +22,7 @@ export function HeroSection() {
         <p className="text-primary-foreground/80 tracking-[0.3em] uppercase text-sm mb-6">
           AlbaExperience
         </p>
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-light text-primary-foreground mb-6 leading-tight text-balance">
+        <h1 className="text-4xl md:text-7xl lg:text-8xl font-light text-primary-foreground mb-6 leading-tight text-balance">
           Capturing Your Most Precious Moments
         </h1>
         <p className="text-lg md:text-xl text-primary-foreground/90 mb-10 max-w-2xl mx-auto leading-relaxed">

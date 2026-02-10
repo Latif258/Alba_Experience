@@ -329,7 +329,7 @@ export default function PackagesPage() {
             <Navigation />
 
             {/* Hero Section */}
-            <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center">
+            <section className="relative h-[40vh] md:h-[60vh] min-h-[300px] md:min-h-[400px] flex items-center justify-center">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="/wedding-2.jpg"
@@ -368,7 +368,7 @@ export default function PackagesPage() {
                         </div>
 
                         <TabsContent value="wedding" className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                            <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
                                 {mainPackages.map((pkg) => (
                                     <PackageCard key={pkg.name} pkg={pkg} />
                                 ))}
@@ -376,7 +376,7 @@ export default function PackagesPage() {
                         </TabsContent>
 
                         <TabsContent value="photo-video" className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                            <div className="grid md:grid-cols-3 gap-8">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                 {photoVideoPackages.map((pkg) => (
                                     <PackageCard key={pkg.name} pkg={pkg} />
                                 ))}
@@ -384,7 +384,7 @@ export default function PackagesPage() {
                         </TabsContent>
 
                         <TabsContent value="engagement" className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                                 {engagementPackages.map((pkg) => (
                                     <PackageCard key={pkg.name} pkg={pkg} />
                                 ))}
@@ -392,7 +392,7 @@ export default function PackagesPage() {
                         </TabsContent>
 
                         <TabsContent value="wedding-only" className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                                 {weddingOnlyPackages.map((pkg) => (
                                     <PackageCard key={pkg.name} pkg={pkg} />
                                 ))}
@@ -400,7 +400,7 @@ export default function PackagesPage() {
                         </TabsContent>
 
                         <TabsContent value="extras" className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                                 <Card>
                                     <CardHeader>
                                         <CardTitle className="font-light">Extras & Adjustments</CardTitle>

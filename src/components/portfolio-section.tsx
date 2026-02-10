@@ -270,7 +270,7 @@ export function PortfolioSection() {
                     </div>
                   </div>
                 </DialogTrigger>
-                <DialogContent className="max-w-5xl h-[90vh] p-0 bg-foreground/95 border-none">
+                <DialogContent className="max-w-5xl w-[95vw] sm:w-full h-[80vh] sm:h-[90vh] p-0 bg-foreground/95 border-none">
                   <DialogHeader className="sr-only">
                     <DialogTitle>
                       {filteredImages[selectedIndex]?.alt || "Portfolio Image"}

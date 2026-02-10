@@ -21,10 +21,10 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="fixed top-4 left-6 right-6 z-50 bg-background/90 backdrop-blur-md rounded-2xl border border-border/50 shadow-sm">
+    <header className="fixed top-4 left-4 right-4 md:left-6 md:right-6 z-50 bg-background/90 backdrop-blur-md rounded-2xl border border-border/50 shadow-sm">
       <nav className="mx-auto max-w-7xl px-6 py-3">
         <div className="flex items-center justify-between">
-          <Link href="/" className="relative h-12 w-44">
+          <Link href="/" className="relative h-10 w-32 md:h-12 md:w-44">
             <Image
               src="/logo.png"
               alt="Alba Experience"
