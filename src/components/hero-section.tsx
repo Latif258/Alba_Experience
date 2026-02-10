@@ -14,7 +14,7 @@ export function HeroSection() {
           className="object-cover object-top"
           priority
         />
-        <div className="absolute inset-0 bg-foreground/30 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-foreground/20" />
       </div>
 
       {/* Content */}
