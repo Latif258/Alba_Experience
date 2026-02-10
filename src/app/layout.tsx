@@ -16,10 +16,6 @@ export const metadata: Metadata = {
   title: 'Alba Experience | Professional Photography in Ghana',
   description: 'Capturing timeless moments for all your celebrations. Wedding, graduation, and portrait photography that tells your unique story.',
   generator: 'v0.app',
-  icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
-  },
 }
 
 export default function RootLayout({
