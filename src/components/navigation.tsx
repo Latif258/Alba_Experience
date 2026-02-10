@@ -105,7 +105,7 @@ export function Navigation() {
                         <MessageCircle className="h-6 w-6" />
                       </Link>
                       <Link
-                        href="mailto:Albaexperincestudios@gmail.com"
+                        href="mailto:albaexperiencestudios@gmail.com"
                         className="p-3 bg-secondary rounded-full text-foreground hover:text-primary transition-colors"
                       >
                         <Mail className="h-6 w-6" />

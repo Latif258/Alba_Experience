@@ -14,7 +14,7 @@ const footerLinks = [
 const socialLinks = [
   { href: "https://www.instagram.com/alba_experience?igsh=ZG1vMGh1dnR5Z2xy", icon: Instagram, label: "Instagram" },
   { href: "https://wa.me/233530458823", icon: MessageCircle, label: "WhatsApp" },
-  { href: "mailto:Albaexperincestudios@gmail.com", icon: Mail, label: "Email" },
+  { href: "mailto:albaexperiencestudios@gmail.com", icon: Mail, label: "Email" },
 ]
 
 export function Footer() {
