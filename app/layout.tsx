@@ -6,11 +6,11 @@ import './globals.css'
 import { WhatsAppFAB } from "@/components/whatsapp-fab"
 
 
-const _cormorant = Cormorant_Garamond({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"]
+  weight: ["300", "400", "500", "600", "700"],
+  variable: '--font-cormorant',
 });
-const _inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: 'Alba Experience | Professional Photography in Ghana',
@@ -28,8 +28,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`font-sans antialiased`}>
+    <html lang="en" className={cormorant.variable}>
+      <body className={`${cormorant.className} antialiased`}>
         {children}
         <WhatsAppFAB />
         <Analytics />
