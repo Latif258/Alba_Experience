@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -14,11 +14,11 @@ export function HeroSection() {
           className="object-cover object-top"
           priority
         />
-        <div className="absolute inset-0 bg-foreground/30" />
+        <div className="absolute inset-0 bg-foreground/30 backdrop-blur-[2px]" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
         <p className="text-primary-foreground/80 tracking-[0.3em] uppercase text-sm mb-6">
           AlbaExperience
         </p>
@@ -32,7 +32,8 @@ export function HeroSection() {
           <Button
             asChild
             size="lg"
-            className="bg-primary-foreground text-foreground hover:bg-primary-foreground/90 tracking-widest uppercase text-sm px-8 py-6"
+            variant="fill"
+            className="tracking-widest uppercase text-xs px-10 py-7 rounded-xl"
           >
             <Link href="#portfolio">View Portfolio</Link>
           </Button>
@@ -40,7 +41,7 @@ export function HeroSection() {
             asChild
             size="lg"
             variant="outline"
-            className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10 tracking-widest uppercase text-sm px-8 py-6 bg-transparent"
+            className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 tracking-widest uppercase text-xs px-10 py-7 rounded-xl bg-transparent backdrop-blur-sm"
           >
             <Link href="https://wa.me/233530458823" target="_blank">Book via WhatsApp</Link>
           </Button>

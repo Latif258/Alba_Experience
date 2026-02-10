@@ -92,7 +92,8 @@ export function BookingSection() {
         </div>
 
         {/* WhatsApp CTA */}
-        <div className="mb-12 text-center bg-card p-8 border border-primary/20 shadow-sm">
+        <div className="mb-12 text-center bg-background/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 shadow-sm overflow-hidden relative">
+          <div className="absolute top-0 left-0 w-1 h-full bg-[#25D366]" />
           <h3 className="text-2xl font-light mb-4 text-foreground">Fastest Way to Book</h3>
           <p className="text-muted-foreground mb-6">
             Messaging us on WhatsApp is the quickest way to check availability and get a response.
@@ -100,7 +101,8 @@ export function BookingSection() {
           <Button
             asChild
             size="lg"
-            className="bg-[#25D366] text-white hover:bg-[#25D366]/90 tracking-widest uppercase text-sm px-8 py-6"
+            variant="fill"
+            className="tracking-widest uppercase text-xs px-10 py-7 rounded-xl text-[#25D366] font-bold"
           >
             <Link href="https://wa.me/233530458823" target="_blank">
               Chat on WhatsApp
@@ -112,7 +114,7 @@ export function BookingSection() {
         </div>
 
         {/* Booking Form */}
-        <form onSubmit={handleSubmit} className="bg-card p-8 md:p-12 border border-border">
+        <form onSubmit={handleSubmit} className="bg-background p-8 md:p-12 rounded-3xl border border-border/50 shadow-sm">
           {isSubmitted ? (
             <div className="text-center py-12">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
@@ -139,7 +141,7 @@ export function BookingSection() {
                     value={formData.firstName}
                     onChange={handleInputChange}
                     required
-                    className="border-border focus:border-primary bg-background"
+                    className="bg-background"
                   />
                 </div>
                 <div className="space-y-2">
@@ -152,7 +154,7 @@ export function BookingSection() {
                     value={formData.lastName}
                     onChange={handleInputChange}
                     required
-                    className="border-border focus:border-primary bg-background"
+                    className="bg-background"
                   />
                 </div>
               </div>
@@ -170,7 +172,7 @@ export function BookingSection() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="border-border focus:border-primary bg-background"
+                    className="bg-background"
                   />
                 </div>
                 <div className="space-y-2">
@@ -183,7 +185,7 @@ export function BookingSection() {
                     type="tel"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="border-border focus:border-primary bg-background"
+                    className="bg-background"
                   />
                 </div>
               </div>
@@ -194,7 +196,7 @@ export function BookingSection() {
                   Session Type
                 </Label>
                 <Select value={sessionType} onValueChange={setSessionType}>
-                  <SelectTrigger className="border-border focus:border-primary bg-background">
+                  <SelectTrigger className="bg-background">
                     <SelectValue placeholder="Select a session type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -216,9 +218,9 @@ export function BookingSection() {
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button
-                        variant="outline"
+                        variant="sunk"
                         className={cn(
-                          "w-full justify-start text-left font-normal border-border bg-background",
+                          "w-full justify-start text-left font-normal h-11 px-4 rounded-xl",
                           !date && "text-muted-foreground"
                         )}
                       >
@@ -242,7 +244,7 @@ export function BookingSection() {
                     Preferred Time
                   </Label>
                   <Select value={time} onValueChange={setTime}>
-                    <SelectTrigger className="border-border focus:border-primary bg-background">
+                    <SelectTrigger className="bg-background">
                       <SelectValue placeholder="Select a time" />
                     </SelectTrigger>
                     <SelectContent>
@@ -268,14 +270,15 @@ export function BookingSection() {
                   onChange={handleInputChange}
                   rows={5}
                   placeholder="Share your event date, venue, and any details you'd like me to know..."
-                  className="border-border focus:border-primary bg-background resize-none"
+                  className="bg-background resize-none"
                 />
               </div>
 
               {/* Submit Button */}
               <Button
                 type="submit"
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 tracking-widest uppercase text-sm py-6"
+                variant="neumorphic-secondary"
+                className="w-full tracking-widest uppercase text-sm py-8 rounded-xl"
               >
                 Request Consultation
               </Button>

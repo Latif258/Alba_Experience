@@ -21,8 +21,8 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <nav className="mx-auto max-w-7xl px-6 py-4">
+    <header className="fixed top-4 left-6 right-6 z-50 bg-background/90 backdrop-blur-md rounded-2xl border border-border/50 shadow-sm">
+      <nav className="mx-auto max-w-7xl px-6 py-3">
         <div className="flex items-center justify-between">
           <Link href="/" className="relative h-12 w-44">
             <Image
@@ -50,12 +50,12 @@ export function Navigation() {
           {/* Mobile Navigation */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
+              <Button variant="fill" size="icon" className="rounded-xl">
+                <Menu className="h-5 w-5" />
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] bg-background">
+            <SheetContent side="right" className="w-[300px] bg-background border-none shadow-neu">
               <div className="flex flex-col gap-8 mt-8">
                 <Link href="/" className="relative h-14 w-48" onClick={() => setIsOpen(false)}>
                   <Image

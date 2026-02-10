@@ -5,6 +5,7 @@ import Image from "next/image"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { ChevronLeft, ChevronRight, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 const portfolioImages = [
   {
@@ -161,6 +162,33 @@ const portfolioImages = [
 
 const categories = ["All", "Weddings", "Graduations", "Family", "Events", "Portraits"]
 
+const AnimButton = ({
+  category,
+  isActive,
+  onClick,
+  type,
+}: {
+  category: string
+  isActive: boolean
+  onClick: () => void
+  type: string
+}) => (
+  <button
+    onClick={onClick}
+    className={cn(
+      "anim-button",
+      type,
+      isActive && "is-active"
+    )}
+  >
+    <div className="button__line"></div>
+    <div className="button__line"></div>
+    <span className="button__text">{category}</span>
+    <div className="button__drow1"></div>
+    <div className="button__drow2"></div>
+  </button>
+)
+
 export function PortfolioSection() {
   const [activeCategory, setActiveCategory] = useState("All")
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -202,19 +230,20 @@ export function PortfolioSection() {
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => handleCategoryChange(category)}
-              className={`px-6 py-2 text-sm tracking-widest uppercase transition-colors ${activeCategory === category
-                ? "bg-primary text-primary-foreground"
-                : "bg-secondary text-secondary-foreground hover:bg-accent"
-                }`}
-            >
-              {category}
-            </button>
-          ))}
+        <div className="flex flex-wrap justify-center gap-x-8 gap-y-12 mb-20 lg:mb-24">
+          {categories.map((category, index) => {
+            const types = ["type--A", "type--B", "type--C"]
+            const type = category === activeCategory ? "type--active" : types[index % types.length]
+            return (
+              <AnimButton
+                key={category}
+                category={category}
+                isActive={activeCategory === category}
+                onClick={() => handleCategoryChange(category)}
+                type={type}
+              />
+            )
+          })}
         </div>
 
         {/* Gallery Grid - Masonry */}
@@ -226,7 +255,7 @@ export function PortfolioSection() {
                 if (open) setSelectedIndex(index)
               }}>
                 <DialogTrigger asChild>
-                  <div className={`group relative ${image.aspect || 'aspect-[4/5]'} overflow-hidden cursor-pointer rounded-sm`}>
+                  <div className={`group relative ${image.aspect || 'aspect-[4/5]'} overflow-hidden cursor-pointer rounded-2xl shadow-sm hover:shadow-neu-raised transition-all duration-500`}>
                     <Image
                       src={image.src || "/placeholder.svg"}
                       alt={image.alt}

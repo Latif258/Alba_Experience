@@ -52,7 +52,7 @@ export function ServicesSection() {
           {services.map((service) => (
             <div
               key={service.title}
-              className="group relative overflow-hidden rounded-md border border-border bg-card flex flex-col h-full hover:shadow-lg transition-all duration-300"
+              className="group relative overflow-hidden rounded-3xl bg-background flex flex-col h-full shadow-neu-raised hover:shadow-neu transition-all duration-500"
             >
               {/* Image Container */}
               <div className="relative h-64 w-full overflow-hidden">

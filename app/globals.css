@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+@custom-variant dark (&:is(.dark *));
+
 html {
   scroll-behavior: smooth;
 }
@@ -39,6 +41,9 @@ html {
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  --neu-light: rgba(255, 255, 255, 0.4);
+  --neu-dark: rgba(0, 0, 0, 0.05);
 }
 
 .dark {
@@ -74,6 +79,9 @@ html {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+
+  --neu-light: rgba(255, 255, 255, 0.015);
+  --neu-dark: rgba(0, 0, 0, 0.3);
 }
 
 @theme inline {
@@ -116,6 +124,12 @@ html {
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  --shadow-neu: -4px -4px 10px 0px var(--neu-light), 4px 4px 10px 0px var(--neu-dark);
+  --shadow-neu-sm: -2px -2px 5px 0px var(--neu-light), 2px 2px 5px 0px var(--neu-dark);
+  --shadow-neu-inset: inset -2px -2px 5px 0px var(--neu-light), inset 2px 2px 5px 0px var(--neu-dark);
+  --shadow-neu-sunk: inset -1px -1px 3px 0px var(--neu-light), inset 1px 1px 3px 0px var(--neu-dark);
+  --shadow-neu-raised: -1px -1px 3px 0px var(--neu-light), 1px 1px 3px 0px var(--neu-dark);
 }
 
 @layer base {
@@ -125,5 +139,331 @@ html {
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .type--A {
+    --line_color: #4a3728;
+    --back_color: #f7f1e3;
+  }
+
+  .type--B {
+    --line_color: #4a3728;
+    --back_color: #ede2d0;
+  }
+
+  .type--C {
+    --line_color: #4a3728;
+    --back_color: #f3e5ab;
+  }
+
+  .type--active {
+    --line_color: var(--primary);
+    --back_color: oklch(0.985 0 0);
+  }
+
+  .dark {
+    .type--A {
+      --line_color: #d7ccc8;
+      --back_color: #3e2723;
+    }
+
+    .type--B {
+      --line_color: #d7ccc8;
+      --back_color: #4e342e;
+    }
+
+    .type--C {
+      --line_color: #d7ccc8;
+      --back_color: #5d4037;
+    }
+
+    .type--active {
+      --line_color: var(--primary);
+      --back_color: #2b1d12;
+    }
+  }
+
+  .anim-button {
+    position: relative;
+    z-index: 0;
+    width: 180px;
+    height: 48px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--line_color);
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    @apply cursor-pointer uppercase;
+  }
+
+  .button__text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .anim-button::before,
+  .anim-button::after,
+  .button__text::before,
+  .button__text::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--line_color);
+    transition: all 0.5s ease;
+  }
+
+  .anim-button::before {
+    top: 0;
+    left: 48px;
+    width: calc(100% - 48px * 2 - 12px);
+  }
+
+  .anim-button::after {
+    top: 0;
+    right: 48px;
+    width: 6px;
+  }
+
+  .button__text::before {
+    bottom: 0;
+    right: 48px;
+    width: calc(100% - 48px * 2 - 12px);
+  }
+
+  .button__text::after {
+    bottom: 0;
+    left: 48px;
+    width: 6px;
+  }
+
+  .button__line {
+    position: absolute;
+    top: 0;
+    width: 48px;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .button__line::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 150%;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 300px;
+    border: solid 2px var(--line_color);
+  }
+
+  .button__line:nth-child(1),
+  .button__line:nth-child(1)::before {
+    left: 0;
+  }
+
+  .button__line:nth-child(2),
+  .button__line:nth-child(2)::before {
+    right: 0;
+  }
+
+  .anim-button:hover,
+  .anim-button.is-active {
+    letter-spacing: 4px;
+  }
+
+  .anim-button:hover::before,
+  .anim-button:hover .button__text::before,
+  .anim-button.is-active::before,
+  .anim-button.is-active .button__text::before {
+    width: 6px;
+  }
+
+  .anim-button:hover::after,
+  .anim-button:hover .button__text::after,
+  .anim-button.is-active::after,
+  .anim-button.is-active .button__text::after {
+    width: calc(100% - 48px * 2 - 12px);
+  }
+
+  .button__drow1,
+  .button__drow2 {
+    position: absolute;
+    z-index: -1;
+    border-radius: 12px;
+    transform-origin: 12px 12px;
+  }
+
+  .button__drow1 {
+    top: -12px;
+    left: 30px;
+    width: 24px;
+    height: 0;
+    transform: rotate(30deg);
+  }
+
+  .button__drow2 {
+    top: 33px;
+    left: 58px;
+    width: 24px;
+    height: 0;
+    transform: rotate(-127deg);
+  }
+
+  .button__drow1::before,
+  .button__drow1::after,
+  .button__drow2::before,
+  .button__drow2::after {
+    content: "";
+    position: absolute;
+  }
+
+  .button__drow1::before {
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 24px;
+    border-radius: 12px;
+    transform-origin: 12px 12px;
+    transform: rotate(-60deg);
+  }
+
+  .button__drow1::after {
+    top: -8px;
+    left: 34px;
+    width: 0;
+    height: 24px;
+    border-radius: 12px;
+    transform-origin: 12px 12px;
+    transform: rotate(69deg);
+  }
+
+  .button__drow2::before {
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 24px;
+    border-radius: 12px;
+    transform-origin: 12px 12px;
+    transform: rotate(-146deg);
+  }
+
+  .button__drow2::after {
+    bottom: 20px;
+    left: -30px;
+    width: 0;
+    height: 24px;
+    border-radius: 12px;
+    transform-origin: 12px 12px;
+    transform: rotate(-262deg);
+  }
+
+  .button__drow1,
+  .button__drow1::before,
+  .button__drow1::after,
+  .button__drow2,
+  .button__drow2::before,
+  .button__drow2::after {
+    background: var(--back_color);
+  }
+
+  .anim-button:hover .button__drow1,
+  .anim-button.is-active .button__drow1 {
+    animation: drow1 ease-in 0.06s;
+    animation-fill-mode: forwards;
+  }
+
+  .anim-button:hover .button__drow1::before,
+  .anim-button.is-active .button__drow1::before {
+    animation: drow2 linear 0.08s 0.06s;
+    animation-fill-mode: forwards;
+  }
+
+  .anim-button:hover .button__drow1::after,
+  .anim-button.is-active .button__drow1::after {
+    animation: drow3 linear 0.03s 0.14s;
+    animation-fill-mode: forwards;
+  }
+
+  .anim-button:hover .button__drow2,
+  .anim-button.is-active .button__drow2 {
+    animation: drow4 linear 0.06s 0.2s;
+    animation-fill-mode: forwards;
+  }
+
+  .anim-button:hover .button__drow2::before,
+  .anim-button.is-active .button__drow2::before {
+    animation: drow3 linear 0.03s 0.26s;
+    animation-fill-mode: forwards;
+  }
+
+  .anim-button:hover .button__drow2::after,
+  .anim-button.is-active .button__drow2::after {
+    animation: drow5 linear 0.06s 0.32s;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes drow1 {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 75px;
+  }
+}
+
+@keyframes drow2 {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0;
+  }
+
+  11% {
+    opacity: 1;
+  }
+
+  100% {
+    width: 90px;
+  }
+}
+
+@keyframes drow3 {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 60px;
+  }
+}
+
+@keyframes drow4 {
+  0% {
+    height: 0;
+  }
+
+  100% {
+    height: 90px;
+  }
+}
+
+@keyframes drow5 {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 95px;
   }
 }

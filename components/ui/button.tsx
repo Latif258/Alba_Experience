@@ -19,6 +19,12 @@ const buttonVariants = cva(
         ghost:
           'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
         link: 'text-primary underline-offset-4 hover:underline',
+        neumorphic:
+          'bg-background shadow-neu hover:shadow-neu-sm active:shadow-neu-inset text-foreground border-none',
+        'neumorphic-secondary':
+          'bg-secondary shadow-neu hover:shadow-neu-sm active:shadow-neu-inset text-secondary-foreground border-none',
+        sunk: 'bg-background shadow-neu-sunk text-foreground border-none active:shadow-neu-raised hover:brightness-95',
+        fill: 'bg-background shadow-neu-raised text-foreground border-none hover:shadow-neu-sm active:shadow-neu-sunk',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',

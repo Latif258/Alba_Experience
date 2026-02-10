@@ -65,10 +65,10 @@ export function Footer() {
                 <Link
                   key={social.label}
                   href={social.href}
-                  className="w-8 h-8 border border-primary-foreground/20 flex items-center justify-center hover:border-primary-foreground hover:bg-primary-foreground/10 transition-colors"
+                  className="w-10 h-10 bg-background/10 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-neu-raised hover:shadow-neu transition-all duration-300 group"
                   aria-label={social.label}
                 >
-                  <social.icon className="h-4 w-4" strokeWidth={1.5} />
+                  <social.icon className="h-4 w-4 text-primary-foreground/70 group-hover:text-primary-foreground" strokeWidth={1.5} />
                 </Link>
               ))}
             </div>

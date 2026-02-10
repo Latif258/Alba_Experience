@@ -29,14 +29,15 @@ export function AboutSection() {
           <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               asChild
-              className="bg-primary text-primary-foreground hover:bg-primary/90 tracking-widest uppercase text-sm px-8 py-6"
+              variant="neumorphic-secondary"
+              className="tracking-widest uppercase text-xs px-10 py-7 rounded-xl"
             >
               <Link href="#booking">Work With Us</Link>
             </Button>
             <Button
               asChild
-              variant="outline"
-              className="border-primary text-primary hover:bg-primary/5 tracking-widest uppercase text-sm px-8 py-6 bg-transparent"
+              variant="neumorphic"
+              className="tracking-widest uppercase text-xs px-10 py-7 rounded-xl text-primary"
             >
               <Link href="#contact">Get in Touch</Link>
             </Button>
