@@ -8,8 +8,8 @@ export function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/wedding-5.jpg"
-          alt="AlbaExperience - Professional photography for weddings, graduations, and events"
+          src="/images/moses-bliss-wedding.jpg"
+          alt="Moses Bliss: Nigerian Gospel Singer - AlbaExperience"
           fill
           className="object-cover object-top"
           priority
@@ -22,6 +22,15 @@ export function HeroSection() {
         <p className="text-primary-foreground/80 tracking-[0.3em] uppercase text-sm mb-6">
           AlbaExperience
         </p>
+
+        {/* Featured Tag */}
+        <div className="absolute top-0 right-0 md:top-auto md:bottom-20 md:right-10 z-30 transform translate-x-1/3 -translate-y-1/2 md:translate-x-0 md:translate-y-0 rotate-90 md:rotate-0 origin-bottom-left md:origin-center">
+          <div className="bg-black/20 backdrop-blur-md border border-white/10 px-6 py-3 rounded-full shadow-lg">
+            <p className="text-white/90 text-[10px] md:text-xs font-medium tracking-[0.2em] uppercase whitespace-nowrap">
+              In Frame: Moses Bliss - Nigerian Gospel Singer
+            </p>
+          </div>
+        </div>
         <h1 className="text-4xl md:text-7xl lg:text-8xl font-light text-primary-foreground mb-6 leading-tight text-balance">
           Capturing Your Most Precious Moments
         </h1>
