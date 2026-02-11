@@ -99,18 +99,6 @@ const portfolioImages = [
     aspect: "aspect-[3/4]"
   },
   {
-    src: "/images/graduation-1.jpg",
-    alt: "Authentic Ghanaian graduation portrait",
-    category: "Graduations",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    src: "/images/graduation-3.jpg",
-    alt: "Graduation ceremony at Ghana International School",
-    category: "Graduations",
-    aspect: "aspect-[4/3]"
-  },
-  {
     src: "/images/graduation-4.jpg",
     alt: "Elegant graduation portrait with floral accents",
     category: "Graduations",
@@ -121,12 +109,6 @@ const portfolioImages = [
     alt: "Professional graduation studio portrait",
     category: "Graduations",
     aspect: "aspect-[3/4]"
-  },
-  {
-    src: "/images/graduation-6.jpg",
-    alt: "Graduation group celebration on stage",
-    category: "Graduations",
-    aspect: "aspect-[4/3]"
   },
   {
     src: "/images/graduation-7.jpg",
@@ -158,6 +140,43 @@ const portfolioImages = [
     category: "Family",
     aspect: "aspect-[3/4]"
   },
+  // Instagram Highlights
+  {
+    src: "/images/instagram/ig-1.jpg",
+    alt: "Celebrity Wedding - High profile destination wedding in Accra",
+    category: "Weddings",
+    aspect: "aspect-[3/4]"
+  },
+  {
+    src: "/images/instagram/ig-2.jpg",
+    alt: "Editorial Portrait - Fashion oriented shoot with Kente details",
+    category: "Portraits",
+    aspect: "aspect-[4/5]"
+  },
+  {
+    src: "/images/instagram/ig-3.jpg",
+    alt: "Luxury Event - Exclusive gala dinner coverage",
+    category: "Events",
+    aspect: "aspect-[16/9]"
+  },
+  {
+    src: "/images/instagram/ig-4.jpg",
+    alt: "Architectural Wedding - Modern couple in structural setting",
+    category: "Weddings",
+    aspect: "aspect-[4/3]"
+  },
+  {
+    src: "/images/instagram/ig-5.jpg",
+    alt: "Vibrant Celebration - Joyful high-energy reception moment",
+    category: "Events",
+    aspect: "aspect-[4/3]"
+  },
+  {
+    src: "/images/instagram/ig-6.jpg",
+    alt: "Cinematic overhead shot of luxury venue",
+    category: "Weddings",
+    aspect: "aspect-[3/4]"
+  }
 ]
 
 const categories = ["All", "Weddings", "Graduations", "Family", "Events", "Portraits"]
@@ -193,23 +212,32 @@ export function PortfolioSection() {
   const [activeCategory, setActiveCategory] = useState("All")
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [isOpen, setIsOpen] = useState(false)
+  const [visibleCount, setVisibleCount] = useState(12) // Initial number of items to show
 
-  const filteredImages = activeCategory === "All"
+  const allFilteredImages = activeCategory === "All"
     ? portfolioImages
     : portfolioImages.filter(img => img.category === activeCategory)
+
+  const visibleImages = allFilteredImages.slice(0, visibleCount)
+  const hasMore = visibleCount < allFilteredImages.length
+
+  const handleLoadMore = () => {
+    setVisibleCount(prev => prev + 6)
+  }
 
   // Reset index when category changes to prevent out-of-bounds access
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category)
     setSelectedIndex(0)
+    setVisibleCount(12) // Reset visible count on category change
   }
 
   const handlePrevious = () => {
-    setSelectedIndex((prev) => (prev === 0 ? filteredImages.length - 1 : prev - 1))
+    setSelectedIndex((prev) => (prev === 0 ? visibleImages.length - 1 : prev - 1))
   }
 
   const handleNext = () => {
-    setSelectedIndex((prev) => (prev === filteredImages.length - 1 ? 0 : prev + 1))
+    setSelectedIndex((prev) => (prev === visibleImages.length - 1 ? 0 : prev + 1))
   }
 
   return (
@@ -247,8 +275,8 @@ export function PortfolioSection() {
         </div>
 
         {/* Gallery Grid - Masonry */}
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-          {filteredImages.map((image, index) => (
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6 mb-16">
+          {visibleImages.map((image, index) => (
             <div key={image.src} className="break-inside-avoid">
               <Dialog open={isOpen && selectedIndex === index} onOpenChange={(open) => {
                 setIsOpen(open)
@@ -273,16 +301,16 @@ export function PortfolioSection() {
                 <DialogContent className="max-w-5xl w-[95vw] sm:w-full h-[80vh] sm:h-[90vh] p-0 bg-foreground/95 border-none">
                   <DialogHeader className="sr-only">
                     <DialogTitle>
-                      {filteredImages[selectedIndex]?.alt || "Portfolio Image"}
+                      {visibleImages[selectedIndex]?.alt || "Portfolio Image"}
                     </DialogTitle>
                     <DialogDescription>
-                      {filteredImages[selectedIndex]?.category || "Photography"} photography by AlbaExperience
+                      {visibleImages[selectedIndex]?.category || "Photography"} photography by AlbaExperience
                     </DialogDescription>
                   </DialogHeader>
                   <div className="relative w-full h-full flex items-center justify-center">
                     <Image
-                      src={filteredImages[selectedIndex]?.src || "/placeholder.svg"}
-                      alt={filteredImages[selectedIndex]?.alt || "Portfolio Image"}
+                      src={visibleImages[selectedIndex]?.src || "/placeholder.svg"}
+                      alt={visibleImages[selectedIndex]?.alt || "Portfolio Image"}
                       fill
                       className="object-contain"
                     />
@@ -314,6 +342,20 @@ export function PortfolioSection() {
             </div>
           ))}
         </div>
+
+        {/* Load More Button */}
+        {hasMore && (
+          <div className="flex justify-center">
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={handleLoadMore}
+              className="tracking-widest uppercase text-xs px-10 py-6 rounded-xl border-muted-foreground/20 hover:bg-muted/50 hover:border-primary transition-all duration-300"
+            >
+              Load More Memories
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   )
