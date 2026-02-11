@@ -128,12 +128,7 @@ const portfolioImages = [
     category: "Graduations",
     aspect: "aspect-[3/4]"
   },
-  {
-    src: "/images/graduation-5.jpg",
-    alt: "Professional graduation studio portrait",
-    category: "Graduations",
-    aspect: "aspect-[3/4]"
-  },
+
   {
     src: "/images/graduation-6.jpg",
     alt: "Graduation group celebration on stage",
