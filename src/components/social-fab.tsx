@@ -6,7 +6,7 @@ import Link from "next/link"
 export function SocialFAB() {
     return (
         <div className="social-buttons-container">
-            <div className="social-buttons">
+            <div className="social-buttons group">
                 {/* Email Button */}
                 <Link
                     href="mailto:albaexperiencestudios@gmail.com"

@@ -829,3 +829,19 @@ html {
     transform: translateY(0);
   }
 }
+
+@media (max-width: 640px) {
+  .premium-button {
+    min-width: 200px;
+    height: 60px;
+    font-size: 14px;
+  }
+
+  .premium-button::after {
+    inset: -5px;
+  }
+
+  .premium-button:hover:after {
+    inset: -7px;
+  }
+}
