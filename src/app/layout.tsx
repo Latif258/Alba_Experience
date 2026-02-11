@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { Cormorant_Garamond, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
-import { WhatsAppFAB } from "@/components/whatsapp-fab"
+import { SocialFAB } from "@/components/social-fab"
 
 
 const cormorant = Cormorant_Garamond({
@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en" className={cormorant.variable}>
       <body className={`${cormorant.className} antialiased`}>
         {children}
-        <WhatsAppFAB />
+        <SocialFAB />
         <Analytics />
       </body>
     </html>

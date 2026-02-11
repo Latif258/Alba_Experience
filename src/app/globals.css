@@ -466,3 +466,366 @@ html {
     width: 95px;
   }
 }
+
+/* Cool share button made by: csozi | Website: english.csozi.hu */
+.social-buttons-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-buttons {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: fit-content;
+  width: fit-content;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+.social-buttons:hover {
+  padding: 60px;
+}
+
+.social-buttons .social-main-button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  border: none;
+  background: var(--background);
+  box-shadow: 5px 5px 12px var(--neu-dark), -5px -5px 12px var(--neu-light);
+  border-radius: 50%;
+  transition: 0.2s;
+  z-index: 101;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.social-buttons .social-button {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  border: none;
+  background: var(--background);
+  box-shadow: 5px 5px 12px rgba(0, 0, 0, 0), -5px -5px 12px rgba(255, 255, 255, 0);
+  transition: 0.3s;
+  border-radius: 50%;
+  color: var(--foreground);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 100;
+}
+
+.social-buttons:hover .social-button {
+  opacity: 1;
+  visibility: visible;
+  box-shadow: 5px 5px 12px var(--neu-dark), -5px -5px 12px var(--neu-light);
+}
+
+.social-buttons .instagram-button:hover {
+  background: #F914AF;
+  color: white;
+}
+
+.social-buttons:hover .instagram-button {
+  translate: -70px 0px;
+}
+
+.social-buttons .whatsapp-button:hover {
+  background: #25D366;
+  color: white;
+}
+
+.social-buttons:hover .whatsapp-button {
+  translate: -47px -47px;
+}
+
+.social-buttons .email-button:hover {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.social-buttons:hover .email-button {
+  translate: 0px -70px;
+}
+
+/* For mobile, we might want to scale it down slightly or adjust the spread */
+@media (max-width: 640px) {
+  .social-buttons-container {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .social-buttons:hover {
+    padding: 50px;
+  }
+
+  .social-buttons:hover .instagram-button {
+    translate: -60px 0px;
+  }
+
+  .social-buttons:hover .whatsapp-button {
+    translate: -42px -42px;
+  }
+
+  .social-buttons:hover .email-button {
+    translate: 0px -60px;
+  }
+}
+
+/* Premium Portfolio Button Styles */
+.premium-button-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.premium-button {
+  --primary: var(--primary);
+  --neutral-1: var(--background);
+  --neutral-2: var(--muted);
+  --radius: 12px;
+
+  cursor: pointer;
+  border-radius: var(--radius);
+  color: var(--foreground);
+  border: none;
+  box-shadow:
+    0 0.5px 0.5px 1px rgba(255, 255, 255, 0.2),
+    0 10px 20px rgba(0, 0, 0, 0.2),
+    0 4px 5px 0px rgba(0, 0, 0, 0.05);
+
+  position: relative;
+  transition: all 0.3s ease;
+  min-width: 240px;
+  height: 70px;
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  padding: 0;
+  text-decoration: none !important;
+}
+
+.premium-button::after {
+  content: "";
+  inset: -7px;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 8px 32px 0 rgba(31, 38, 135, 0.2),
+    inset 0 -2px 2px rgba(255, 255, 255, 0.2);
+  border-radius: 18px;
+  transition: all 0.5s ease 0.2s;
+  z-index: 0;
+}
+
+.dark .premium-button::after {
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 8px 32px 0 rgba(0, 0, 0, 0.4),
+    inset 0 -2px 2px rgba(255, 255, 255, 0.05);
+}
+
+.premium-button:hover:after {
+  inset: -9px;
+}
+
+.premium-button::before {
+  content: "";
+  inset: 11px;
+  position: absolute;
+  background: linear-gradient(to top, var(--neutral-1), var(--neutral-2));
+  opacity: 0.7;
+  border-radius: 30px;
+  filter: blur(0.5px);
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.premium-button:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 0 1px 2px rgba(255, 255, 255, 0.3),
+    0 15px 30px rgba(0, 0, 0, 0.3),
+    0 10px 3px -3px rgba(0, 0, 0, 0.04);
+}
+
+.premium-button:active {
+  transform: scale(1);
+  box-shadow:
+    0 0 1px 2px rgba(255, 255, 255, 0.3),
+    0 10px 3px -3px rgba(0, 0, 0, 0.2);
+}
+
+.premium-button .bg {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  background:
+    linear-gradient(var(--neutral-1), var(--neutral-2)) padding-box,
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.45)) border-box;
+  z-index: 1;
+  transition: all 0.4s ease;
+}
+
+.premium-button:hover .bg {
+  transform: scale(1.04, 1.1);
+  box-shadow: inset 0 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.premium-button .bg-spin {
+  position: absolute;
+  border-radius: inherit;
+  overflow: hidden;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  inset: -5px;
+}
+
+.premium-button .bg-spin::before {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  filter: blur(20px);
+  background: conic-gradient(transparent 30%,
+      rgba(255, 255, 255, 0.1) 80%,
+      transparent 100%);
+  animation: premium-spin 2s linear infinite;
+  animation-play-state: paused;
+}
+
+@keyframes premium-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.premium-button:hover .bg-spin {
+  opacity: 1;
+}
+
+.premium-button:hover .bg-spin::before {
+  animation-play-state: running;
+}
+
+.premium-button .bg-gradient {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 15px;
+  inset: -7px;
+  z-index: 0;
+  opacity: 0.1;
+  transition: all 0.5s linear;
+  filter: blur(10px);
+}
+
+.premium-button:hover .bg-gradient {
+  opacity: 0.4;
+}
+
+.premium-button .bg-gradient::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  margin: auto;
+  aspect-ratio: 1;
+  background-image: linear-gradient(90deg,
+      #0d3fe4,
+      #ff52e2,
+      #fd4845,
+      #f7d35b,
+      #50f77d,
+      #25e1e4);
+  animation: premium-spin 2s linear infinite;
+}
+
+.premium-button .button-text-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.premium-button .button-text-state p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.premium-button .button-text-state p span {
+  display: block;
+  opacity: 0;
+  animation: premium-slideDown 0.8s ease forwards calc(var(--i) * 0.03s);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: inherit;
+}
+
+.premium-button:hover .button-text-state p span {
+  opacity: 1;
+  animation: premium-wave 0.5s ease forwards calc(var(--i) * 0.03s);
+}
+
+@keyframes premium-wave {
+  30% {
+    opacity: 1;
+    transform: translateY(4px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-3px);
+    color: var(--primary);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes premium-slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+    color: var(--primary);
+    filter: blur(5px);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translateY(-4px) rotate(-10deg);
+    filter: blur(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(3px) rotate(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

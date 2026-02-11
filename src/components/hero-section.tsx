@@ -29,14 +29,20 @@ export function HeroSection() {
           Elegant, timeless, and authentic. From weddings and graduations to portraits and special events, we capture the emotions that define your story.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button
-            asChild
-            size="lg"
-            variant="fill"
-            className="tracking-widest uppercase text-xs px-10 py-7 rounded-xl"
-          >
-            <Link href="#portfolio">View Portfolio</Link>
-          </Button>
+          <Link href="#portfolio" className="premium-button">
+            <div className="bg-gradient" />
+            <div className="bg-spin" />
+            <div className="bg" />
+            <div className="button-text-state">
+              <p>
+                {"VIEW PORTFOLIO".split("").map((char, i) => (
+                  <span key={i} style={{ "--i": i } as any}>
+                    {char === " " ? "\u00A0" : char}
+                  </span>
+                ))}
+              </p>
+            </div>
+          </Link>
           <Button
             asChild
             size="lg"
