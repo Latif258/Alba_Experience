@@ -9,6 +9,12 @@ import { cn } from "@/lib/utils"
 
 const portfolioImages = [
   {
+    src: "/wedding-new-feature.jpg",
+    alt: "Beautiful wedding celebration moment",
+    category: "Weddings",
+    aspect: "aspect-[4/3]"
+  },
+  {
     src: "/wedding-1.jpg",
     alt: "Lovely couple portrait",
     category: "Couples",
