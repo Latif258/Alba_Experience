@@ -109,8 +109,8 @@ const engagementPackages = [
     {
         name: "Gold",
         price: "GHS 12,000",
-        image: "/traditional-couple.jpg",
-        objectPosition: "object-[center_35%]",
+        image: "/portfolio/weddings/traditional-engagement/Traditional (1).jpeg",
+        objectPosition: "object-[center_20%]",
         coverage: [
             "Three photographers",
             "10 hours photography coverage",
@@ -129,8 +129,8 @@ const engagementPackages = [
     {
         name: "Silver",
         price: "GHS 7,000",
-        image: "/traditional-couple-2.jpg",
-        objectPosition: "object-[center_40%]",
+        image: "/portfolio/weddings/traditional-engagement/Traditional (3).jpeg",
+        objectPosition: "object-[center_30%]",
         coverage: [
             "One photographer",
             "6 hours Coverage",
@@ -151,7 +151,7 @@ const weddingOnlyPackages = [
     {
         name: "Gold",
         price: "GHS 12,000",
-        image: "/wedding-2.jpg",
+        image: "/portfolio/weddings/wedding/wedding (4).jpg",
         objectPosition: "object-[center_30%]",
         coverage: [
             "Three photographers",
@@ -171,8 +171,8 @@ const weddingOnlyPackages = [
     {
         name: "Silver",
         price: "GHS 7,000",
-        image: "/first-look.jpg",
-        objectPosition: "object-[center_35%]",
+        image: "/portfolio/weddings/wedding/wedding (6).jpg",
+        objectPosition: "object-[center_20%]",
         coverage: [
             "One photograper",
             "8 hours coverage",
