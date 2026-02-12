@@ -386,10 +386,10 @@ export function PortfolioSection() {
 
           {/* Sub-category Filter for Weddings - FLAWLESS DYNAMIC PILL */}
           {activeCategory === "Weddings" && (
-            <div className="flex justify-center px-4 animate-in fade-in zoom-in-95 slide-in-from-top-4 duration-700 w-full overflow-hidden">
+            <div className="flex justify-center px-4 animate-in fade-in zoom-in-95 slide-in-from-top-4 duration-700 w-full">
               <div
                 ref={tabsRef}
-                className="relative p-1.5 bg-foreground/[0.03] backdrop-blur-2xl rounded-full flex items-center border border-foreground/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.04)] overflow-x-auto max-w-full no-scrollbar md:justify-center"
+                className="relative p-1.5 bg-foreground/[0.03] backdrop-blur-2xl rounded-full flex items-center justify-start md:justify-center border border-foreground/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.04)] overflow-x-auto max-w-full no-scrollbar"
               >
                 {/* Dynamic Sliding Background */}
                 <div
