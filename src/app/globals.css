@@ -274,6 +274,7 @@ html {
   .anim-button:hover,
   .anim-button.is-active {
     letter-spacing: 4px;
+    --line_color: var(--primary);
   }
 
   .anim-button:hover::before,
@@ -804,6 +805,16 @@ html {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Utility to hide scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 @keyframes premium-slideDown {
