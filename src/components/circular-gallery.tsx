@@ -187,14 +187,18 @@ class Media {
         img.src = this.image;
         img.onload = () => {
             // High-Resolution Composite Logic
+            // Responsive Resolution to prevent OOM on mobile
+            const isMobile = window.innerWidth < 768;
+            const baseWidth = isMobile ? 640 : 1200; // Mobile: 640px (High Quality), Desktop: 1200px (Premium)
             const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d', { alpha: false }); // Performance boost
             if (!ctx) return;
 
-            // Use a high-density 2K base for the labels
-            canvas.width = 1536 * dpr;
-            canvas.height = 2048 * dpr;
+            // Use responsive dimensions maintaining 3:4 aspect ratio (0.75)
+            canvas.width = baseWidth * dpr;
+            canvas.height = (baseWidth / 0.75) * dpr;
 
             // 1. Draw Original Image (Cover Mode)
             const imgAspect = img.naturalWidth / img.naturalHeight;
@@ -233,7 +237,8 @@ class Media {
 
             // 3. Draw Couple Name + Redirect Icon (More Elegant Scale)
             const upperText = this.text.toUpperCase();
-            const fontSize = Math.floor(canvas.width * 0.052); // Refined scale
+            // Font size relative to canvas width ensures consistency across resolutions
+            const fontSize = Math.floor(canvas.width * 0.052);
             ctx.font = `900 ${fontSize}px Inter, Figtree, sans-serif`;
             ctx.fillStyle = '#ffffff';
             ctx.textAlign = 'center';
