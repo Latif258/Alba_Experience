@@ -1,31 +1,59 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { HeroBackground } from "./hero-background"
+import { cn } from "@/lib/utils"
 
 export function HeroSection() {
+  const [heroTheme, setHeroTheme] = useState<"light" | "dark">("dark")
+
+  useEffect(() => {
+    const handleThemeChange = (e: any) => {
+      setHeroTheme(e.detail.theme)
+    }
+    window.addEventListener("heroThemeChange" as any, handleThemeChange)
+    return () => window.removeEventListener("heroThemeChange" as any, handleThemeChange)
+  }, [])
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/wedding-5.jpg"
-          alt="AlbaExperience - Professional photography for weddings, graduations, and events"
-          fill
-          className="object-cover object-top"
-          priority
-        />
-        <div className="absolute inset-0 bg-foreground/20" />
-      </div>
+      {/* Background Images */}
+      <HeroBackground
+        images={[
+          "/hero/1.jpeg",
+          { src: "/hero/2.jpg", theme: "light" },
+          { src: "/hero/3.jpg", className: "object-top", theme: "light" },
+          { src: "/hero/4.jpeg", theme: "light" },
+          "/hero/5.jpg",
+          { src: "/hero/6.jpg", className: "object-[center_20%]" },
+          "/hero/7.jpg",
+          "/hero/8.jpg",
+          "/hero/9.jpg",
+          { src: "/hero/10.jpeg", className: "object-center", theme: "light" },
+          "/hero/11.jpeg",
+          "/hero/12.jpeg",
+        ]}
+      />
 
       {/* Content */}
       <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
-        <p className="text-primary-foreground/80 tracking-[0.3em] uppercase text-sm mb-6">
+        <p
+          className={cn(
+            "transition-all duration-700 font-bold tracking-[0.5em] uppercase text-sm sm:text-base md:text-lg mb-8 transition-opacity",
+            heroTheme === "light"
+              ? "text-[#6f4e37] drop-shadow-[0_2px_10px_rgba(255,255,255,1)]"
+              : "text-[#ff9d4d] drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]"
+          )}
+        >
           AlbaExperience
         </p>
-        <h1 className="text-4xl md:text-7xl lg:text-8xl font-light text-primary-foreground mb-6 leading-tight text-balance">
+        <h1 className="text-4xl md:text-7xl lg:text-8xl font-light text-white mb-6 leading-tight text-balance drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
           Capturing Your Most Precious Moments
         </h1>
-        <p className="text-lg md:text-xl text-primary-foreground/90 mb-10 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
           Elegant, timeless, and authentic. From weddings and graduations to portraits and special events, we capture the emotions that define your story.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

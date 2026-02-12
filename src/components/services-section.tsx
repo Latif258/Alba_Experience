@@ -13,13 +13,13 @@ const services = [
     icon: GraduationCap,
     title: "Graduations",
     description: "Celebrate your academic achievements with professional portraits that capture your pride, joy, and the beginning of a new chapter.",
-    image: "/images/graduation-1.jpg"
+    image: "/images/graduation.png"
   },
   {
     icon: Users,
     title: "Family Portraits",
     description: "Timeless family photography that freezes fleeting moments. Perfect for annual cards, maternity, newborn, or generational gatherings.",
-    image: "/images/family-moment-1.jpg"
+    image: "/images/family-portrait-new.jpeg"
   },
   {
     icon: Camera,
@@ -31,7 +31,7 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section id="services" className="py-24 px-6 bg-background">
+    <section id="services" className="py-24 px-6 bg-[#fdfcfb]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">

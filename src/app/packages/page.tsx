@@ -14,7 +14,8 @@ const mainPackages = [
     {
         name: "One Time Experience",
         price: "GHS 30,000",
-        image: "/wedding-1.jpg",
+        image: "/traditional-couple.jpg",
+        objectPosition: "object-[center_35%]",
         description: "The ultimate premium package covering every detail of your journey.",
         coverage: [
             "Three photographers + 1 Creative director",
@@ -40,7 +41,8 @@ const mainPackages = [
     {
         name: "True Romance",
         price: "GHS 20,000",
-        image: "/wedding-5.jpg",
+        image: "/true-romance.jpg",
+        objectPosition: "object-[center_20%]",
         description: "Extensive coverage for both traditional and white wedding ceremonies.",
         coverage: [
             "Three Photographers",
@@ -63,6 +65,7 @@ const mainPackages = [
         name: "Love Story",
         price: "GHS 15,000",
         image: "/modern-couple-first-look.jpg",
+        objectPosition: "object-[center_40%]",
         description: "Perfect for capturing the essence of your love story.",
         coverage: [
             "Two Photographers",
@@ -84,6 +87,7 @@ const mainPackages = [
         name: "Brief Encounter",
         price: "GHS 10,000",
         image: "/wedding-3.jpg",
+        objectPosition: "object-[center_25%]",
         description: "Essential coverage for intimate celebrations.",
         coverage: [
             "Two Photographer",
@@ -106,6 +110,7 @@ const engagementPackages = [
         name: "Gold",
         price: "GHS 12,000",
         image: "/traditional-couple.jpg",
+        objectPosition: "object-[center_35%]",
         coverage: [
             "Three photographers",
             "10 hours photography coverage",
@@ -125,6 +130,7 @@ const engagementPackages = [
         name: "Silver",
         price: "GHS 7,000",
         image: "/traditional-couple-2.jpg",
+        objectPosition: "object-[center_40%]",
         coverage: [
             "One photographer",
             "6 hours Coverage",
@@ -146,6 +152,7 @@ const weddingOnlyPackages = [
         name: "Gold",
         price: "GHS 12,000",
         image: "/wedding-2.jpg",
+        objectPosition: "object-[center_30%]",
         coverage: [
             "Three photographers",
             "12 hours coverage",
@@ -165,6 +172,7 @@ const weddingOnlyPackages = [
         name: "Silver",
         price: "GHS 7,000",
         image: "/first-look.jpg",
+        objectPosition: "object-[center_35%]",
         coverage: [
             "One photograper",
             "8 hours coverage",
@@ -185,6 +193,7 @@ const photoVideoPackages = [
         name: "Mega",
         price: "GHS 32,000",
         image: "/bridesmaids-group.jpg",
+        objectPosition: "object-center",
         description: "Comprehensive photo and video photojournalism.",
         coverage: [
             "Two photographers + Three videographers",
@@ -206,6 +215,7 @@ const photoVideoPackages = [
         name: "Masterpiece",
         price: "GHS 25,000",
         image: "/couple-stone-wall.jpg",
+        objectPosition: "object-[center_40%]",
         description: "A perfect blend of motion and stills.",
         coverage: [
             "2 photographers + 2 videographers",
@@ -224,6 +234,7 @@ const photoVideoPackages = [
         name: "Precious Moment",
         price: "GHS 20,000",
         image: "/bridesmaids-yellow.jpg",
+        objectPosition: "object-center",
         description: "Capture the precious moments in high definition.",
         coverage: [
             "Two photographer + Two videographers",
@@ -271,7 +282,7 @@ function PackageCard({ pkg }: { pkg: any }) {
                         src={pkg.image}
                         alt={pkg.name}
                         fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        className={`object-cover transition-transform duration-700 group-hover:scale-105 ${pkg.objectPosition || 'object-center'}`}
                     />
                 )}
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors" />

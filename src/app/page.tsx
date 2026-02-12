@@ -1,11 +1,15 @@
+import dynamic from "next/dynamic"
 import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/hero-section"
-import { PortfolioSection } from "@/components/portfolio-section"
-import { AboutSection } from "@/components/about-section"
-import { ServicesSection } from "@/components/services-section"
-import { BookingSection } from "@/components/booking-section"
-import { ContactSection } from "@/components/contact-section"
-import { Footer } from "@/components/footer"
+
+// Lazy load below-the-fold sections for faster initial paint
+const PortfolioSection = dynamic(() => import("@/components/portfolio-section").then(mod => mod.PortfolioSection))
+const AboutSection = dynamic(() => import("@/components/about-section").then(mod => mod.AboutSection))
+const GalleriesSection = dynamic(() => import("@/components/galleries-section").then(mod => mod.GalleriesSection))
+const ServicesSection = dynamic(() => import("@/components/services-section").then(mod => mod.ServicesSection))
+const BookingSection = dynamic(() => import("@/components/booking-section").then(mod => mod.BookingSection))
+const ContactSection = dynamic(() => import("@/components/contact-section").then(mod => mod.ContactSection))
+const Footer = dynamic(() => import("@/components/footer").then(mod => mod.Footer))
 
 export default function Home() {
   return (
@@ -14,6 +18,7 @@ export default function Home() {
       <HeroSection />
       <PortfolioSection />
       <AboutSection />
+      <GalleriesSection />
       <ServicesSection />
       <BookingSection />
       <ContactSection />

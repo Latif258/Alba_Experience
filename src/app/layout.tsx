@@ -13,8 +13,23 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: 'Alba Experience | Professional Photography in Ghana',
-  description: 'Capturing timeless moments for all your celebrations. Wedding, graduation, and portrait photography that tells your unique story.',
+  title: 'Alba Experience | Premium Photography in Ghana',
+  description: 'Capturing timeless moments with an elegant, authentic touch. Specialist in Wedding, Prewedding, Traditional Engagement, Graduation, and Portrait photography in Ghana.',
+  keywords: ['Photography Ghana', 'Wedding Photographer Accra', 'Alba Experience', 'Prewedding Photography', 'Ghanaian Wedding', 'Event Photography Ghana'],
+  authors: [{ name: 'Alba Experience' }],
+  openGraph: {
+    title: 'Alba Experience | Premium Photography in Ghana',
+    description: 'Elegant and authentic photography capturing your most precious moments.',
+    url: 'https://albaexperience.com',
+    siteName: 'Alba Experience',
+    locale: 'en_GH',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Alba Experience | Premium Photography in Ghana',
+    description: 'Elegant and authentic photography capturing your most precious moments.',
+  },
   generator: 'v0.app',
 }
 
