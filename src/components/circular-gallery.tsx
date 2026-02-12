@@ -187,7 +187,7 @@ class Media {
         img.src = this.image;
         img.onload = () => {
             // High-Resolution Composite Logic
-            const dpr = Math.min(window.devicePixelRatio || 1, 3);
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d', { alpha: false }); // Performance boost
             if (!ctx) return;
