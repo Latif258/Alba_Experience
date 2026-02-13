@@ -33,7 +33,7 @@ const mainPackages = [
             "1000 standard photos (Online gallery)",
             "A2 Photobook (350 photos)",
             "70 retouched images",
-            "2 frames",
+            "2 premium museum frames",
             "Pictures on Pen drive",
             "Alba premium card"
         ]
@@ -58,7 +58,7 @@ const mainPackages = [
             "A3 Photobook (200 photos)",
             "700 standard photos (Online gallery)",
             "Pictures on Pendrive",
-            "Two frames"
+            "2 museum frames"
         ]
     },
     {
@@ -276,7 +276,7 @@ const prePostWedding = [
 function PackageCard({ pkg }: { pkg: any }) {
     return (
         <Card className="flex flex-col h-full border-primary/20 overflow-hidden hover:border-primary/50 transition-all duration-300 group">
-            <div className="relative h-48 w-full overflow-hidden">
+            <div className="relative aspect-[3/4] w-full overflow-hidden">
                 {pkg.image && (
                     <Image
                         src={pkg.image}
@@ -292,7 +292,7 @@ function PackageCard({ pkg }: { pkg: any }) {
                     <CardTitle className="text-2xl font-light text-primary">{pkg.name}</CardTitle>
                     <div className="text-2xl font-bold mt-1 text-foreground">{pkg.price}</div>
                 </div>
-                {pkg.description && <CardDescription className="text-base line-clamp-3">{pkg.description}</CardDescription>}
+                {pkg.description && <CardDescription className="text-base">{pkg.description}</CardDescription>}
             </CardHeader>
             <CardContent className="flex-1 space-y-8">
                 <div>

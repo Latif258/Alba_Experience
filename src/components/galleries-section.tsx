@@ -4,6 +4,41 @@ import CircularGallery from "./circular-gallery"
 
 const galleryData = [
     {
+        text: "ETHEL'S WEDDING",
+        link: "https://alba-experience.client-gallery.com/gallery/ethel-wedding",
+        image: "/galleries/Ethel Engagement and Wedding_84.jpg"
+    },
+    {
+        text: "ANGELA & PRINCE",
+        link: "https://alba-experience.client-gallery.com/gallery/angela-and-prince-wedding",
+        image: "/galleries/Angela & Prince wedding.jpg"
+    },
+    {
+        text: "PORTIA & JACOB",
+        link: "https://alba-experience.client-gallery.com/gallery/portia-and-jacob",
+        image: "/galleries/Portia & Jacob wedding.jpg"
+    },
+    {
+        text: "TRUDY'S PORTRAIT",
+        link: "https://alba-experience.client-gallery.com/gallery/trudyportrait1",
+        image: "/galleries/TrudyPortrait.jpg"
+    },
+    {
+        text: "FAITH'S MATERNITY",
+        link: "https://alba-experience.client-gallery.com/gallery/faith-pregnancy",
+        image: "/galleries/Faith Pregnancy_10.jpg"
+    },
+    {
+        text: "ABIGAIL & GILLES",
+        link: "https://alba-experience.client-gallery.com/gallery/abigail-and-gilles",
+        image: "/galleries/Abigail&Gilles_2.jpg"
+    },
+    {
+        text: "ARABA'S MOMENTS",
+        link: "https://alba-experience.client-gallery.com/gallery/araba-extra",
+        image: "/galleries/araba.jpg"
+    },
+    {
         text: "AFFUA & AGYIMAN",
         link: "https://alba-experience.client-gallery.com/gallery/affua-and-agyiman",
         image: "/galleries/Efuah & Agyemang.jpg"
