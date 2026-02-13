@@ -109,7 +109,7 @@ const engagementPackages = [
     {
         name: "Gold",
         price: "GHS 12,000",
-        image: "/portfolio/weddings/traditional-engagement/Traditional (1).jpeg",
+        image: "/portfolio/weddings/traditional-engagement/traditional (1).jpeg",
         objectPosition: "object-[center_20%]",
         coverage: [
             "Three photographers",
@@ -129,7 +129,7 @@ const engagementPackages = [
     {
         name: "Silver",
         price: "GHS 7,000",
-        image: "/portfolio/weddings/traditional-engagement/Traditional (3).jpeg",
+        image: "/portfolio/weddings/traditional-engagement/traditional (12).jpeg",
         objectPosition: "object-[center_30%]",
         coverage: [
             "One photographer",
@@ -214,7 +214,7 @@ const photoVideoPackages = [
     {
         name: "Masterpiece",
         price: "GHS 25,000",
-        image: "/couple-stone-wall.jpg",
+        image: "/portfolio/weddings/prewedding/prewedding (4).jpeg",
         objectPosition: "object-[center_40%]",
         description: "A perfect blend of motion and stills.",
         coverage: [
