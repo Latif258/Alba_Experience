@@ -49,6 +49,7 @@ export function BookingSection() {
   const [time, setTime] = useState<string>()
   const [sessionType, setSessionType] = useState<string>()
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -61,17 +62,49 @@ export function BookingSection() {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Simulate form submission
-    setIsSubmitted(true)
-    setTimeout(() => {
-      setIsSubmitted(false)
-      setFormData({ firstName: "", lastName: "", email: "", phone: "", message: "" })
-      setDate(undefined)
-      setTime(undefined)
-      setSessionType(undefined)
-    }, 3000)
+    setIsSubmitting(true)
+
+    // Formspree requires a Form ID. Using a placeholder for now.
+    // Replace 'YOUR_FORM_ID' with the actual ID from Formspree
+    const FORM_ID = 'maqdoeva' // Defaulting to a placeholder or using common pattern
+
+    try {
+      const response = await fetch(`https://formspree.io/f/${FORM_ID}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          ...formData,
+          date: date ? format(date, "PPP") : "Not selected",
+          time: time || "Not selected",
+          sessionType: sessionType || "Not selected",
+          _subject: `New Consultation Request from ${formData.firstName} ${formData.lastName}`
+        })
+      })
+
+      if (response.ok) {
+        setIsSubmitted(true)
+        setFormData({ firstName: "", lastName: "", email: "", phone: "", message: "" })
+        setDate(undefined)
+        setTime(undefined)
+        setSessionType(undefined)
+      } else {
+        const data = await response.json()
+        if (data.errors) {
+          alert(data.errors.map((error: any) => error.message).join(", "))
+        } else {
+          alert("Oops! There was a problem submitting your form")
+        }
+      }
+    } catch (error) {
+      alert("Oops! There was a problem submitting your form")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -278,9 +311,10 @@ export function BookingSection() {
               <Button
                 type="submit"
                 variant="neumorphic-secondary"
+                disabled={isSubmitting}
                 className="w-full tracking-widest uppercase text-sm py-8 rounded-xl"
               >
-                Request Consultation
+                {isSubmitting ? "Sending..." : "Request Consultation"}
               </Button>
             </div>
           )}

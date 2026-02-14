@@ -1,15 +1,21 @@
 "use client"
 
-import { Mail, Phone, MapPin, Instagram } from "lucide-react"
-
+import { useState } from "react"
+import { Mail, Phone, MapPin, Instagram, Check } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-
+import { cn } from "@/lib/utils"
 
 const contactInfo = [
   {
     icon: Mail,
     label: "Email",
+    value: "jettasamoah@gmail.com",
+    href: "mailto:jettasamoah@gmail.com",
+  },
+  {
+    icon: Mail,
+    label: "Email (Backup)",
     value: "albaexperiencestudios@gmail.com",
     href: "mailto:albaexperiencestudios@gmail.com",
   },
@@ -34,6 +40,23 @@ const contactInfo = [
 ]
 
 export function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  })
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitted(true)
+    // Simulate API call
+    setTimeout(() => {
+      setIsSubmitted(false)
+      setFormData({ name: "", email: "", message: "" })
+    }, 3000)
+  }
+
   return (
     <section id="contact" className="py-24 px-6 bg-secondary">
       <div className="max-w-7xl mx-auto">
@@ -91,47 +114,68 @@ export function ContactSection() {
               </Button>
             </div>
 
-            <h3 className="text-2xl font-light text-foreground mb-6">
-              Send a Quick Message
-            </h3>
-            <form className="space-y-6">
-              <div className="space-y-2">
-                <label htmlFor="contact-name" className="text-sm tracking-wider uppercase text-muted-foreground">
-                  Name
-                </label>
-                <input
-                  id="contact-name"
-                  type="text"
-                  className="w-full px-4 py-3 border border-border bg-background focus:border-primary focus:outline-none transition-colors"
-                />
+            {isSubmitted ? (
+              <div className="text-center py-12 animate-in fade-in duration-500">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
+                  <Check className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-2xl font-light text-foreground mb-4">Message Sent</h3>
+                <p className="text-muted-foreground">Thank you! We'll get back to you shortly.</p>
               </div>
-              <div className="space-y-2">
-                <label htmlFor="contact-email" className="text-sm tracking-wider uppercase text-muted-foreground">
-                  Email
-                </label>
-                <input
-                  id="contact-email"
-                  type="email"
-                  className="w-full px-4 py-3 border border-border bg-background focus:border-primary focus:outline-none transition-colors"
-                />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="contact-message" className="text-sm tracking-wider uppercase text-muted-foreground">
-                  Message
-                </label>
-                <textarea
-                  id="contact-message"
-                  rows={4}
-                  className="w-full px-4 py-3 border border-border bg-background focus:border-primary focus:outline-none transition-colors resize-none"
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 tracking-widest uppercase text-sm py-4 transition-colors"
-              >
-                Send Message
-              </button>
-            </form>
+            ) : (
+              <>
+                <h3 className="text-2xl font-light text-foreground mb-6">
+                  Send a Quick Message
+                </h3>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="space-y-2">
+                    <label htmlFor="contact-name" className="text-sm tracking-wider uppercase text-muted-foreground">
+                      Name
+                    </label>
+                    <input
+                      id="contact-name"
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-4 py-3 border border-border bg-background focus:border-primary focus:outline-none transition-colors"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="contact-email" className="text-sm tracking-wider uppercase text-muted-foreground">
+                      Email
+                    </label>
+                    <input
+                      id="contact-email"
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-4 py-3 border border-border bg-background focus:border-primary focus:outline-none transition-colors"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="contact-message" className="text-sm tracking-wider uppercase text-muted-foreground">
+                      Message
+                    </label>
+                    <textarea
+                      id="contact-message"
+                      rows={4}
+                      required
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full px-4 py-3 border border-border bg-background focus:border-primary focus:outline-none transition-colors resize-none"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 tracking-widest uppercase text-sm py-4 transition-colors"
+                  >
+                    Send Message
+                  </button>
+                </form>
+              </>
+            )}
           </div>
         </div>
       </div>

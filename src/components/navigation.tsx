@@ -32,16 +32,17 @@ export function Navigation() {
       setIsScrolled(window.scrollY > 50)
     }
 
-    const handleThemeChange = (e: any) => {
-      setHeroTheme(e.detail.theme)
+    const handleThemeChange = (e: Event) => {
+      const customEvent = e as CustomEvent<{ theme: 'light' | 'dark' }>;
+      setHeroTheme(customEvent.detail.theme)
     }
 
     window.addEventListener("scroll", handleScroll)
-    window.addEventListener("heroThemeChange" as any, handleThemeChange)
+    window.addEventListener("heroThemeChange", handleThemeChange)
 
     return () => {
       window.removeEventListener("scroll", handleScroll)
-      window.removeEventListener("heroThemeChange" as any, handleThemeChange)
+      window.removeEventListener("heroThemeChange", handleThemeChange)
     }
   }, [])
 

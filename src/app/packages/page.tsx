@@ -273,7 +273,17 @@ const prePostWedding = [
     { item: "Christening (2 hours - Photos only)", price: "GHS 2,500" },
 ]
 
-function PackageCard({ pkg }: { pkg: any }) {
+interface WeddingPackage {
+    name: string;
+    price: string;
+    description?: string;
+    image: string;
+    objectPosition?: string;
+    coverage: string[];
+    deliverables: string[];
+}
+
+function PackageCard({ pkg }: { pkg: WeddingPackage }) {
     return (
         <Card className="flex flex-col h-full border-primary/20 overflow-hidden hover:border-primary/50 transition-all duration-300 group">
             <div className="relative aspect-[3/4] w-full overflow-hidden">

@@ -110,31 +110,31 @@ const portfolioImages = [
   {
     src: "/images/family-portrait-new.jpeg",
     alt: "New beautiful family portrait",
-    category: "Family",
+    category: "Events",
     aspect: "aspect-[3/4]"
   },
   {
     src: "/images/family-moment-1.jpg",
     alt: "Joyful multi-generational family portrait",
-    category: "Family",
+    category: "Events",
     aspect: "aspect-[4/3]"
   },
   {
     src: "/images/family-moment-2.jpg",
     alt: "Candid family moment during celebration",
-    category: "Family",
+    category: "Events",
     aspect: "aspect-[4/3]"
   },
   {
     src: "/images/family-moment-3.jpg",
     alt: "Solemn family prayer and blessing ceremony",
-    category: "Family",
+    category: "Events",
     aspect: "aspect-[4/3]"
   },
   {
     src: "/images/family-moment-4.jpg",
     alt: "Traditional family gathering and ceremony",
-    category: "Family",
+    category: "Events",
     aspect: "aspect-[3/4]"
   },
   {
@@ -214,6 +214,11 @@ const portfolioImages = [
   { src: "/portfolio/weddings/prewedding/prewedding-13.jpeg", alt: "Prewedding 13", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
   { src: "/portfolio/weddings/prewedding/prewedding-14.jpeg", alt: "Prewedding 14", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
   { src: "/portfolio/weddings/prewedding/prewedding-15.jpeg", alt: "Prewedding 15", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
+  { src: "/portfolio/weddings/prewedding/prewedding-16.jpeg", alt: "Prewedding 16", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
+  { src: "/portfolio/weddings/prewedding/prewedding-17.jpeg", alt: "Prewedding 17", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
+  { src: "/portfolio/weddings/prewedding/prewedding-18.jpeg", alt: "Prewedding 18", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
+  { src: "/portfolio/weddings/prewedding/prewedding-19.jpeg", alt: "Prewedding 19", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
+  { src: "/portfolio/weddings/prewedding/prewedding-20.jpeg", alt: "Prewedding 20", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
 
   // Wedding Folder
   { src: "/portfolio/weddings/wedding/wedding-1.jpg", alt: "Wedding 1", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[3/4]" },
@@ -231,7 +236,7 @@ const portfolioImages = [
   { src: "/portfolio/weddings/wedding/mosesbliss9.jpg.jpeg", alt: "Moses Bliss Wedding", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[4/3]", objectPosition: "object-top" },
 ]
 
-const mainCategories = ["All", "Weddings", "Family", "Events", "Portraits"]
+const mainCategories = ["All", "Weddings", "Events", "Portraits"]
 const weddingSubCategories = ["All Weddings", "Traditional/Engagement", "Prewedding", "Wedding"]
 
 interface PortfolioImage {
