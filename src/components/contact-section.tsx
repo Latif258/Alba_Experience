@@ -10,14 +10,10 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "jettasamoah@gmail.com",
-    href: "mailto:jettasamoah@gmail.com",
-  },
-  {
-    icon: Mail,
-    label: "Email (Backup)",
-    value: "albaexperiencestudios@gmail.com",
-    href: "mailto:albaexperiencestudios@gmail.com",
+    items: [
+      { value: "albaexperiencestudios@gmail.com", href: "mailto:albaexperiencestudios@gmail.com" },
+      { value: "jettasamoah@gmail.com", href: "mailto:jettasamoah@gmail.com", subLabel: "Backup" },
+    ],
   },
   {
     icon: Phone,
@@ -82,15 +78,35 @@ export function ContactSection() {
                     <p className="text-sm tracking-wider uppercase text-muted-foreground mb-1">
                       {item.label}
                     </p>
-                    {item.href ? (
-                      <Link
-                        href={item.href}
-                        className="text-lg text-foreground hover:text-primary transition-colors"
-                      >
-                        {item.value}
-                      </Link>
+                    {item.items ? (
+                      <div className="space-y-2">
+                        {item.items.map((subItem, idx) => (
+                          <div key={idx}>
+                            <Link
+                              href={subItem.href}
+                              className="text-lg text-foreground hover:text-primary transition-colors block"
+                            >
+                              {subItem.value}
+                              {subItem.subLabel && (
+                                <span className="text-sm text-muted-foreground ml-2">
+                                  ({subItem.subLabel})
+                                </span>
+                              )}
+                            </Link>
+                          </div>
+                        ))}
+                      </div>
                     ) : (
-                      <p className="text-lg text-foreground">{item.value}</p>
+                      item.href ? (
+                        <Link
+                          href={item.href}
+                          className="text-lg text-foreground hover:text-primary transition-colors"
+                        >
+                          {item.value}
+                        </Link>
+                      ) : (
+                        <p className="text-lg text-foreground">{item.value}</p>
+                      )
                     )}
                   </div>
                 </div>
