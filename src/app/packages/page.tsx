@@ -57,6 +57,7 @@ const mainPackages = [
             "All raw files shared for selection",
             "A3 Photobook (200 photos)",
             "700 standard photos (Online gallery)",
+            "50 retouched images",
             "Pictures on Pendrive",
             "2 museum frames"
         ]
