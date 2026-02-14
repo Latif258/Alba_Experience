@@ -150,7 +150,10 @@ export function Navigation() {
                           <Link href="https://wa.me/233530458823" target="_blank" className="p-3 bg-secondary rounded-full text-foreground hover:text-primary transition-colors">
                             <MessageCircle className="h-6 w-6" />
                           </Link>
-                          <Link href="mailto:albaexperiencestudios@gmail.com" className="p-3 bg-secondary rounded-full text-foreground hover:text-primary transition-colors">
+                          <Link href="mailto:jettasamoah@gmail.com" className="p-3 bg-secondary rounded-full text-foreground hover:text-primary transition-colors" title="Email (Primary)">
+                            <Mail className="h-6 w-6" />
+                          </Link>
+                          <Link href="mailto:albaexperiencestudios@gmail.com" className="p-3 bg-secondary rounded-full text-foreground hover:text-primary transition-colors" title="Email (Backup)">
                             <Mail className="h-6 w-6" />
                           </Link>
                         </div>

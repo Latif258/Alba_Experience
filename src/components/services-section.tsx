@@ -88,9 +88,9 @@ export function ServicesSection() {
             <Link href="/packages" className="text-primary hover:underline ml-1 font-medium">
               View our full Packages & Pricing
             </Link> or
-            <a href="#contact" className="text-primary hover:underline ml-1">
+            <Link href="/#contact" className="text-primary hover:underline ml-1">
               Contact us
-            </a> for a custom quote.
+            </Link> for a custom quote.
           </p>
         </div>
       </div>
