@@ -42,19 +42,40 @@ export function ContactSection() {
     message: "",
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitted(true)
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitted(false)
-      setFormData({ name: "", email: "", message: "" })
-    }, 3000)
+    setIsSubmitting(true)
+
+    const FORM_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID || 'maqdoeva'
+
+    try {
+      const response = await fetch(`https://formspree.io/f/${FORM_ID}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+
+      if (response.ok) {
+        setIsSubmitted(true)
+        setFormData({ name: "", email: "", message: "" })
+        setTimeout(() => setIsSubmitted(false), 5000)
+      } else {
+        alert("Oops! There was a problem submitting your form")
+      }
+    } catch (error) {
+      alert("Oops! There was a problem submitting your form")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
-    <section id="contact" className="py-24 px-6 bg-secondary">
+    <section id="contact" className="py-24 px-6 bg-secondary" >
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Info */}
@@ -195,6 +216,6 @@ export function ContactSection() {
           </div>
         </div>
       </div>
-    </section>
+    </section >
   )
 }

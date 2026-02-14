@@ -144,10 +144,10 @@ export function Navigation() {
                     <div className="mt-auto pt-10 border-t border-border/50">
                       <div className="flex flex-col items-center gap-8">
                         <div className="flex gap-8">
-                          <Link href="https://www.instagram.com/alba_experience" target="_blank" className="p-3 bg-secondary rounded-full text-foreground hover:text-primary transition-colors">
+                          <Link href="https://www.instagram.com/alba_experience" target="_blank" rel="noopener noreferrer" className="p-3 bg-secondary rounded-full text-foreground hover:text-primary transition-colors">
                             <Instagram className="h-6 w-6" />
                           </Link>
-                          <Link href="https://wa.me/233530458823" target="_blank" className="p-3 bg-secondary rounded-full text-foreground hover:text-primary transition-colors">
+                          <Link href="https://wa.me/233530458823" target="_blank" rel="noopener noreferrer" className="p-3 bg-secondary rounded-full text-foreground hover:text-primary transition-colors">
                             <MessageCircle className="h-6 w-6" />
                           </Link>
                           <Link href="mailto:jettasamoah@gmail.com" className="p-3 bg-secondary rounded-full text-foreground hover:text-primary transition-colors" title="Email (Primary)">

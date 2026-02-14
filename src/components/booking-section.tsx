@@ -66,9 +66,7 @@ export function BookingSection() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Formspree requires a Form ID. Using a placeholder for now.
-    // Replace 'YOUR_FORM_ID' with the actual ID from Formspree
-    const FORM_ID = 'maqdoeva' // Defaulting to a placeholder or using common pattern
+    const FORM_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID || 'maqdoeva'
 
     try {
       const response = await fetch(`https://formspree.io/f/${FORM_ID}`, {
