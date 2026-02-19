@@ -2,13 +2,7 @@ import { PortfolioImage } from "./types";
 
 export const weddingImages: PortfolioImage[] = [
     // --- Wedding Collection ---
-    {
-        src: "/portfolio/weddings/wedding/wedding-highlight-2.jpg",
-        alt: "Stunning wedding portrait - Groom at piano",
-        category: "Weddings",
-        subCategory: "Wedding",
-        aspect: "aspect-[4/5]"
-    },
+
     {
         src: "/portfolio/weddings/wedding/wedding-new-feature.jpg",
         alt: "Beautiful wedding celebration moment",
@@ -123,10 +117,9 @@ export const weddingImages: PortfolioImage[] = [
     { src: "/portfolio/weddings/wedding/bride-prep.avif", alt: "Bride Preparation", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[3/4]" },
     { src: "/portfolio/weddings/wedding/bridesmaids-fans.jpg", alt: "Bridesmaids with Fans", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[4/3]" },
     { src: "/portfolio/weddings/wedding/bridesmaids-yellow.jpg", alt: "Bridesmaids in Yellow", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[4/3]" },
-    { src: "/portfolio/weddings/wedding/couple-stone-wall.jpg", alt: "Couple by Stone Wall", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/weddings/wedding/couple-stone-wall.jpg", alt: "Couple by Stone Wall", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[3/4]", objectPosition: "object-[130%_right]" },
     { src: "/portfolio/weddings/wedding/groomsmen.jpg", alt: "Groomsmen", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[4/3]" },
     { src: "/portfolio/weddings/wedding/traditional-couple.jpg", alt: "Traditional Couple", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[3/4]" },
-    { src: "/portfolio/weddings/wedding/traditional-couple-2.jpg", alt: "Traditional Couple 2", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[3/4]" },
 ];
 
 // --- Client Galleries (Visible in "All" only) ---
