@@ -87,7 +87,7 @@ const mainPackages = [
     {
         name: "Brief Encounter",
         price: "GHS 10,000",
-        image: "/portfolio/weddings/wedding/wedding (3).avif",
+        image: "/portfolio/weddings/prewedding/prewedding- (10).avif",
         objectPosition: "object-[center_25%]",
         description: "Essential coverage for intimate celebrations.",
         coverage: [
@@ -355,7 +355,7 @@ export default function PackagesPage() {
             <section className="relative h-[40vh] md:h-[60vh] min-h-[300px] md:min-h-[400px] flex items-center justify-center">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/portfolio/weddings/wedding/wedding (2).avif"
+                        src="/hero/11.jpeg"
                         alt="Alba Experience Packages"
                         fill
                         className="object-cover"

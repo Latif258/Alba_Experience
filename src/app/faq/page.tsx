@@ -9,7 +9,7 @@ import {
 
 export default function FAQPage() {
     return (
-        <main className="min-h-screen flex flex-col pt-24">
+        <main className="min-h-screen flex flex-col pt-24 bg-secondary/50">
             <Navigation />
 
             <section className="flex-1 py-12 px-6">
