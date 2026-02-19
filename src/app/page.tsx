@@ -6,6 +6,7 @@ import { HeroSection } from "@/components/hero-section"
 const PortfolioSection = dynamic(() => import("@/components/portfolio-section").then(mod => mod.PortfolioSection))
 const AboutSection = dynamic(() => import("@/components/about-section").then(mod => mod.AboutSection))
 const GalleriesSection = dynamic(() => import("@/components/galleries-section").then(mod => mod.GalleriesSection))
+const ReviewsSection = dynamic(() => import("@/components/reviews-section").then(mod => mod.ReviewsSection))
 const ServicesSection = dynamic(() => import("@/components/services-section").then(mod => mod.ServicesSection))
 const BookingSection = dynamic(() => import("@/components/booking-section").then(mod => mod.BookingSection))
 const ContactSection = dynamic(() => import("@/components/contact-section").then(mod => mod.ContactSection))
@@ -19,6 +20,7 @@ export default function Home() {
       <PortfolioSection />
       <AboutSection />
       <GalleriesSection />
+      <ReviewsSection />
       <ServicesSection />
       <BookingSection />
       <ContactSection />

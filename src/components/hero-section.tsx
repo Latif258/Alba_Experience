@@ -23,16 +23,15 @@ export function HeroSection() {
       {/* Background Images */}
       <HeroBackground
         images={[
-          "/hero/1.jpeg",
-          { src: "/hero/2.jpg", theme: "light" },
-          { src: "/hero/3.jpg", className: "object-top", theme: "light" },
+          "/hero/1.avif",
+          { src: "/hero/2.avif", theme: "light" },
+          { src: "/hero/3.avif", className: "object-top", theme: "light" },
           { src: "/hero/4.jpeg", theme: "light" },
-          "/hero/5.jpg",
-          { src: "/hero/6.jpg", className: "object-[center_20%]" },
-          "/hero/7.jpg",
-          "/hero/8.jpg",
-          "/hero/9.jpg",
-          { src: "/hero/10.jpeg", className: "object-center", theme: "light" },
+          "/hero/5.avif",
+          { src: "/hero/6.avif", className: "object-[center_20%]" },
+          "/hero/7.avif",
+          "/hero/9.avif",
+          { src: "/hero/10.avif", className: "object-center", theme: "light" },
           "/hero/11.jpeg",
           "/hero/12.jpeg",
         ]}

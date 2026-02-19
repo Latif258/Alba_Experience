@@ -63,7 +63,7 @@ export function Navigation() {
         <div className="flex items-center justify-between">
           <Link href="/" className="relative h-10 w-32 md:h-12 md:w-44 transition-all duration-500 hover:scale-105 active:scale-95">
             <Image
-              src="/logo.png"
+              src="/assets/branding/logo.png"
               alt="Alba Experience"
               fill
               className={cn(
@@ -117,7 +117,7 @@ export function Navigation() {
                     <div className="mb-12">
                       <Link href="/" className="relative h-12 w-40 block" onClick={() => setIsOpen(false)}>
                         <Image
-                          src="/logo.png"
+                          src="/assets/branding/logo.png"
                           alt="Alba Experience"
                           fill
                           className="object-contain object-left"

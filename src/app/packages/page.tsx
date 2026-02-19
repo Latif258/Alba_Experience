@@ -14,7 +14,7 @@ const mainPackages = [
     {
         name: "One Time Experience",
         price: "GHS 30,000",
-        image: "/traditional-couple.jpg",
+        image: "/portfolio/weddings/wedding/traditional-couple.jpg",
         objectPosition: "object-[center_35%]",
         description: "The ultimate premium package covering every detail of your journey.",
         coverage: [
@@ -41,7 +41,7 @@ const mainPackages = [
     {
         name: "True Romance",
         price: "GHS 20,000",
-        image: "/true-romance.jpg",
+        image: "/portfolio/weddings/wedding/true-romance.jpg",
         objectPosition: "object-[center_20%]",
         description: "Extensive coverage for both traditional and white wedding ceremonies.",
         coverage: [
@@ -65,7 +65,7 @@ const mainPackages = [
     {
         name: "Love Story",
         price: "GHS 15,000",
-        image: "/modern-couple-first-look.jpg",
+        image: "/portfolio/weddings/wedding/modern-couple-first-look.jpg",
         objectPosition: "object-[center_40%]",
         description: "Perfect for capturing the essence of your love story.",
         coverage: [
@@ -87,7 +87,7 @@ const mainPackages = [
     {
         name: "Brief Encounter",
         price: "GHS 10,000",
-        image: "/wedding-3.jpg",
+        image: "/portfolio/weddings/wedding/wedding (3).avif",
         objectPosition: "object-[center_25%]",
         description: "Essential coverage for intimate celebrations.",
         coverage: [
@@ -110,7 +110,7 @@ const engagementPackages = [
     {
         name: "Gold",
         price: "GHS 12,000",
-        image: "/portfolio/weddings/traditional-engagement/traditional-5.jpeg",
+        image: "/portfolio/weddings/traditional-engagement/traditional- (5).avif",
         objectPosition: "object-[center_20%]",
         coverage: [
             "Three photographers",
@@ -130,7 +130,7 @@ const engagementPackages = [
     {
         name: "Silver",
         price: "GHS 7,000",
-        image: "/portfolio/weddings/prewedding/prewedding-6.jpeg",
+        image: "/portfolio/weddings/prewedding/prewedding- (6).avif",
         objectPosition: "object-[center_30%]",
         coverage: [
             "One photographer",
@@ -152,7 +152,7 @@ const weddingOnlyPackages = [
     {
         name: "Gold",
         price: "GHS 12,000",
-        image: "/portfolio/weddings/wedding/wedding-4.jpg",
+        image: "/portfolio/weddings/wedding/wedding (4).avif",
         objectPosition: "object-[center_30%]",
         coverage: [
             "Three photographers",
@@ -172,7 +172,7 @@ const weddingOnlyPackages = [
     {
         name: "Silver",
         price: "GHS 7,000",
-        image: "/portfolio/weddings/wedding/wedding-6.jpg",
+        image: "/portfolio/weddings/wedding/wedding (6).avif",
         objectPosition: "object-[center_20%]",
         coverage: [
             "One photograper",
@@ -193,7 +193,7 @@ const photoVideoPackages = [
     {
         name: "Mega",
         price: "GHS 32,000",
-        image: "/bridesmaids-group.jpg",
+        image: "/portfolio/events/bridesmaids-group.jpg",
         objectPosition: "object-center",
         description: "Comprehensive photo and video photojournalism.",
         coverage: [
@@ -215,7 +215,7 @@ const photoVideoPackages = [
     {
         name: "Masterpiece",
         price: "GHS 25,000",
-        image: "/portfolio/weddings/prewedding/prewedding-4.jpeg",
+        image: "/portfolio/weddings/prewedding/prewedding- (4).avif",
         objectPosition: "object-[center_40%]",
         description: "A perfect blend of motion and stills.",
         coverage: [
@@ -234,7 +234,7 @@ const photoVideoPackages = [
     {
         name: "Precious Moment",
         price: "GHS 20,000",
-        image: "/bridesmaids-yellow.jpg",
+        image: "/portfolio/weddings/wedding/bridesmaids-yellow.jpg",
         objectPosition: "object-center",
         description: "Capture the precious moments in high definition.",
         coverage: [
@@ -294,6 +294,7 @@ function PackageCard({ pkg }: { pkg: WeddingPackage }) {
                         alt={pkg.name}
                         fill
                         className={`object-cover transition-transform duration-700 group-hover:scale-105 ${pkg.objectPosition || 'object-center'}`}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
                     />
                 )}
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors" />
@@ -354,11 +355,12 @@ export default function PackagesPage() {
             <section className="relative h-[40vh] md:h-[60vh] min-h-[300px] md:min-h-[400px] flex items-center justify-center">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/wedding-2.jpg"
+                        src="/portfolio/weddings/wedding/wedding (2).avif"
                         alt="Alba Experience Packages"
                         fill
                         className="object-cover"
                         priority
+                        sizes="100vw"
                     />
                     <div className="absolute inset-0 bg-black/50" />
                 </div>
@@ -379,12 +381,13 @@ export default function PackagesPage() {
                 <div className="max-w-7xl mx-auto space-y-12">
 
                     <Tabs defaultValue="wedding" className="w-full">
-                        <div className="flex justify-center mb-12 overflow-x-auto pb-4">
-                            <TabsList className="h-auto p-1 bg-muted/50 rounded-full">
+                        <div className="flex justify-start md:justify-center mb-12 overflow-x-auto pb-4 -mx-6 px-6 no-scrollbar">
+                            <TabsList className="h-auto p-1 bg-muted/50 rounded-full flex-nowrap whitespace-nowrap">
                                 <TabsTrigger value="wedding" className="px-6 py-3 rounded-full text-base">Full Wedding</TabsTrigger>
                                 <TabsTrigger value="photo-video" className="px-6 py-3 rounded-full text-base">Photo + Video</TabsTrigger>
                                 <TabsTrigger value="engagement" className="px-6 py-3 rounded-full text-base">Engagement Only</TabsTrigger>
                                 <TabsTrigger value="wedding-only" className="px-6 py-3 rounded-full text-base">Wedding Only</TabsTrigger>
+                                <TabsTrigger value="pre-post" className="px-6 py-3 rounded-full text-base">Pre/Post Wedding</TabsTrigger>
                                 <TabsTrigger value="extras" className="px-6 py-3 rounded-full text-base">Extras & Add-ons</TabsTrigger>
                             </TabsList>
                         </div>
@@ -421,25 +424,8 @@ export default function PackagesPage() {
                             </div>
                         </TabsContent>
 
-                        <TabsContent value="extras" className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                                <Card>
-                                    <CardHeader>
-                                        <CardTitle className="font-light">Extras & Adjustments</CardTitle>
-                                        <CardDescription>Add-ons to customize your package</CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <ul className="space-y-6">
-                                            {extras.map((extra, i) => (
-                                                <li key={i} className="flex justify-between items-center border-b border-border/50 pb-3 last:border-0 last:pb-0">
-                                                    <span className="text-base text-foreground/90">{extra.item}</span>
-                                                    <span className="text-lg font-medium text-primary">{extra.price}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </CardContent>
-                                </Card>
-
+                        <TabsContent value="pre-post" className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                            <div className="max-w-4xl mx-auto">
                                 <Card>
                                     <CardHeader>
                                         <CardTitle className="text-2xl font-light">Pre / Post Wedding & Events</CardTitle>
@@ -451,6 +437,27 @@ export default function PackagesPage() {
                                                 <li key={i} className="flex justify-between items-center border-b border-border/50 pb-3 last:border-0 last:pb-0">
                                                     <span className="text-base text-foreground/90">{item.item}</span>
                                                     <span className="text-lg font-medium text-primary">{item.price}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        </TabsContent>
+
+                        <TabsContent value="extras" className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                            <div className="max-w-4xl mx-auto">
+                                <Card>
+                                    <CardHeader>
+                                        <CardTitle className="font-light">Extras & Adjustments</CardTitle>
+                                        <CardDescription>Add-ons to customize your package</CardDescription>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <ul className="space-y-6">
+                                            {extras.map((extra, i) => (
+                                                <li key={i} className="flex justify-between items-center border-b border-border/50 pb-3 last:border-0 last:pb-0">
+                                                    <span className="text-base text-foreground/90">{extra.item}</span>
+                                                    <span className="text-lg font-medium text-primary">{extra.price}</span>
                                                 </li>
                                             ))}
                                         </ul>

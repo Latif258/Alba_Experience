@@ -7,25 +7,25 @@ const services = [
     icon: Heart,
     title: "Weddings & Unions",
     description: "From intimate elopements to grand celebrations, I document the authentic emotions and timeless moments of your special day.",
-    image: "/wedding-1.jpg"
+    image: "/portfolio/weddings/wedding/wedding (1).avif"
   },
   {
     icon: GraduationCap,
     title: "Graduations",
     description: "Celebrate your academic achievements with professional portraits that capture your pride, joy, and the beginning of a new chapter.",
-    image: "/images/graduation.png"
+    image: "/portfolio/events/graduation.png"
   },
   {
     icon: Users,
     title: "Family Portraits",
     description: "Timeless family photography that freezes fleeting moments. Perfect for annual cards, maternity, newborn, or generational gatherings.",
-    image: "/images/family-portrait-new.jpeg"
+    image: "/portfolio/events/family-portrait-new.jpeg"
   },
   {
     icon: Camera,
     title: "Corporate & Events",
     description: "Elevate your brand or document your corporate gatherings with crisp, professional imagery that speaks to your organization's excellence.",
-    image: "/images/corporate.png"
+    image: "/portfolio/corporate/corperate_image6.jpeg"
   },
 ]
 
@@ -61,6 +61,7 @@ export function ServicesSection() {
                   alt={service.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors" />
                 <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm p-3 rounded-full">

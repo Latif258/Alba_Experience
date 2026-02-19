@@ -26,7 +26,7 @@ export function Footer() {
           <div className="md:col-span-2">
             <Link href="/" className="relative h-24 w-48 mb-4 block">
               <Image
-                src="/footer-logo.png"
+                src="/assets/branding/footer-logo.png"
                 alt="Alba Experience"
                 fill
                 className="object-contain"

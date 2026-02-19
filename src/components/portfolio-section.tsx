@@ -2,263 +2,27 @@
 
 import { useState, useRef, useLayoutEffect } from "react"
 import Image from "next/image"
+import { portfolioImages, type PortfolioImage } from "@/data/portfolio"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { ChevronLeft, ChevronRight, X } from "lucide-react"
+import { ChevronLeft, ChevronRight, ChevronDown, X, Heart, Sparkles, Camera, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-const portfolioImages = [
-  // --- Main Portfolio (Visible in "All" and default main categories) ---
-  {
-    src: "/wedding-highlight-2.jpg",
-    alt: "Stunning wedding portrait - Groom at piano",
-    category: "Weddings",
-    subCategory: "Wedding",
-    aspect: "aspect-[4/5]"
-  },
-  {
-    src: "/wedding-new-feature.jpg",
-    alt: "Beautiful wedding celebration moment",
-    category: "Weddings",
-    subCategory: "Wedding",
-    aspect: "aspect-[4/3]"
-  },
-  {
-    src: "/traditional-couple.jpg",
-    alt: "Traditional Ghanaian Wedding - Regal couple in kente cloth",
-    category: "Weddings",
-    subCategory: "Traditional/Engagement",
-    aspect: "aspect-[4/5]"
-  },
-  {
-    src: "/first-look.jpg",
-    alt: "Modern wedding first look moment outdoors",
-    category: "Weddings",
-    subCategory: "Wedding",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    src: "/bridesmaids-yellow.jpg",
-    alt: "Joyful bridesmaids in gold and yellow traditional attire",
-    category: "Weddings",
-    subCategory: "Traditional/Engagement",
-    aspect: "aspect-[4/3]"
-  },
-  {
-    src: "/groomsmen.jpg",
-    alt: "Groomsmen in suits standing in formation outdoors",
-    category: "Weddings",
-    subCategory: "Wedding",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    src: "/bridesmaids-fans.jpg",
-    alt: "Elegant bridesmaids seated with fans",
-    category: "Weddings",
-    subCategory: "Traditional/Engagement",
-    aspect: "aspect-[4/3]"
-  },
-  {
-    src: "/traditional-couple-2.jpg",
-    alt: "Vibrant traditional Ghanaian wedding couple",
-    category: "Weddings",
-    subCategory: "Traditional/Engagement",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    src: "/modern-couple-first-look.jpg",
-    alt: "Emotional first look moment in white",
-    category: "Weddings",
-    subCategory: "Wedding",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    src: "/wedding-1.jpg",
-    alt: "Lovely couple portrait",
-    category: "Weddings",
-    subCategory: "Prewedding",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    src: "/wedding-2.jpg",
-    alt: "Ceremonial elegance with sword arch",
-    category: "Weddings",
-    subCategory: "Wedding",
-    aspect: "aspect-[4/3]"
-  },
-  {
-    src: "/wedding-3.jpg",
-    alt: "Reflective beauty, bride mirror shot",
-    category: "Weddings",
-    subCategory: "Wedding",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    src: "/wedding-4.jpg",
-    alt: "Artistic angles, overhead composition",
-    category: "Weddings",
-    subCategory: "Wedding",
-    aspect: "aspect-[4/3]"
-  },
-  {
-    src: "/wedding-5.jpg",
-    alt: "Staircase elegance, bride portrait",
-    category: "Weddings",
-    subCategory: "Wedding",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    src: "/images/family-portrait-new.jpeg",
-    alt: "New beautiful family portrait",
-    category: "Events",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    src: "/images/family-moment-1.jpg",
-    alt: "Joyful multi-generational family portrait",
-    category: "Events",
-    aspect: "aspect-[4/3]"
-  },
-  {
-    src: "/images/family-moment-2.jpg",
-    alt: "Candid family moment during celebration",
-    category: "Events",
-    aspect: "aspect-[4/3]"
-  },
-  {
-    src: "/images/family-moment-3.jpg",
-    alt: "Solemn family prayer and blessing ceremony",
-    category: "Events",
-    aspect: "aspect-[4/3]"
-  },
-  {
-    src: "/images/family-moment-4.jpg",
-    alt: "Traditional family gathering and ceremony",
-    category: "Events",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    src: "/bridesmaids-group.jpg",
-    alt: "Joyful bridal party group portrait",
-    category: "Events",
-    aspect: "aspect-[16/9]"
-  },
-  {
-    src: "/groomsmen-overhead.jpg",
-    alt: "Creative overhead shot of groomsmen",
-    category: "Events",
-    aspect: "aspect-[4/3]"
-  },
-  {
-    src: "/couple-stone-wall.jpg",
-    alt: "Dramatic couple portrait by ancient wall",
-    category: "Portraits",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    src: "/hero/6.jpg",
-    alt: "Beautiful portrait moment",
-    category: "Portraits",
-    aspect: "aspect-[4/3]",
-    objectPosition: "object-top"
-  },
-  {
-    src: "/hero/3.jpg",
-    alt: "Elegant portrait",
-    category: "Portraits",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    src: "/hero/2.jpg",
-    alt: "Professional portrait",
-    category: "Portraits",
-    aspect: "aspect-[4/3]"
-  },
-
-  // --- Sub-Category Exclusive Images (Reserved for specific wedding sub-tabs) ---
-  // Traditional / Engagement Folder
-  { src: "/portfolio/weddings/traditional-engagement/traditional-1.jpeg", alt: "Traditional 1", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[3/2]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-5.jpeg", alt: "Traditional 5", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-6.jpeg", alt: "Traditional 6", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-7.jpeg", alt: "Traditional 7", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[3/4]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-8.jpeg", alt: "Traditional 8", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[3/2]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-9.jpeg", alt: "Traditional 9", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-10.jpeg", alt: "Traditional 10", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-11.jpeg", alt: "Traditional 11", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-12.jpeg", alt: "Traditional 12", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-13.jpeg", alt: "Traditional 13", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-14.jpeg", alt: "Traditional 14", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[2/3]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-15.jpeg", alt: "Traditional 15", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-16.jpeg", alt: "Traditional 16", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-17.jpeg", alt: "Traditional 17", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-18.jpeg", alt: "Traditional 18", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[3/2]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-19.jpeg", alt: "Traditional 19", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[5/4]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-20.jpeg", alt: "Traditional 20", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-21.jpeg", alt: "Traditional 21", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[5/4]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-22.jpeg", alt: "Traditional 22", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[5/4]" },
-  { src: "/portfolio/weddings/traditional-engagement/traditional-23.jpeg", alt: "Traditional 23", category: "Weddings", subCategory: "Traditional/Engagement", isSubExclusive: true, aspect: "aspect-[2/3]" },
-
-  // Prewedding Folder
-  { src: "/portfolio/weddings/prewedding/prewedding-1.jpeg", alt: "Prewedding 1", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-2.jpeg", alt: "Prewedding 2", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-3.jpeg", alt: "Prewedding 3", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-4.jpeg", alt: "Prewedding 4", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-5.jpeg", alt: "Prewedding 5", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-6.jpeg", alt: "Prewedding 6", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-7.jpeg", alt: "Prewedding 7", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-8.jpeg", alt: "Prewedding 8", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-9.jpeg", alt: "Prewedding 9", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-10.jpeg", alt: "Prewedding 10", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-11.jpeg", alt: "Prewedding 11", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-12.jpeg", alt: "Prewedding 12", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[3/2]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-13.jpeg", alt: "Prewedding 13", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-14.jpeg", alt: "Prewedding 14", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-15.jpeg", alt: "Prewedding 15", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-16.jpeg", alt: "Prewedding 16", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-17.jpeg", alt: "Prewedding 17", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-18.jpeg", alt: "Prewedding 18", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-19.jpeg", alt: "Prewedding 19", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/prewedding/prewedding-20.jpeg", alt: "Prewedding 20", category: "Weddings", subCategory: "Prewedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-
-  // Wedding Folder
-  { src: "/portfolio/weddings/wedding/wedding-1.jpg", alt: "Wedding 1", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[3/4]" },
-  { src: "/portfolio/weddings/wedding/wedding-2.jpg", alt: "Wedding 2", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[4/5]" },
-  { src: "/portfolio/weddings/wedding/wedding-3.jpg", alt: "Wedding 3", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[4/3]" },
-  { src: "/portfolio/weddings/wedding/wedding-4.jpg", alt: "Wedding 4", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[3/4]" },
-  { src: "/portfolio/weddings/wedding/wedding-5.jpg", alt: "Wedding 5", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[4/3]" },
-  { src: "/portfolio/weddings/wedding/wedding-6.jpg", alt: "Wedding 6", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[3/4]" },
-  { src: "/portfolio/weddings/wedding/wedding-7.jpg", alt: "Wedding 7", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[4/3]" },
-  { src: "/portfolio/weddings/wedding/wedding-8.jpg", alt: "Wedding 8", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[3/4]" },
-  { src: "/portfolio/weddings/wedding/wedding-9.jpg", alt: "Wedding 9", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[4/3]" },
-  { src: "/portfolio/weddings/wedding/wedding-10.jpg", alt: "Wedding 10", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[3/4]" },
-  { src: "/portfolio/weddings/wedding/wedding-11.jpg", alt: "Wedding 11", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[4/3]" },
-  { src: "/portfolio/weddings/wedding/wedding-12.jpg", alt: "Wedding 12", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[3/4]" },
-  { src: "/portfolio/weddings/wedding/mosesbliss9.jpg.jpeg", alt: "Moses Bliss Wedding", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[4/3]", objectPosition: "object-top" },
-]
-
-const mainCategories = ["All", "Weddings", "Events", "Portraits"]
-const weddingSubCategories = ["All Weddings", "Traditional/Engagement", "Prewedding", "Wedding"]
-
-interface PortfolioImage {
-  src: string
-  alt: string
-  category: string
-  subCategory?: string
-  isSubExclusive?: boolean
-  aspect?: string
-  objectPosition?: string
-}
+const mainCategories = ["All", "Weddings", "Events", "Portraits", "Corporate"]
+const weddingSubCategories = ["Traditional/Engagement", "Prewedding", "Wedding"]
 
 const AnimButton = ({
   category,
   isActive,
   onClick,
   type,
+  hasSubcategories,
 }: {
   category: string
   isActive: boolean
   onClick: () => void
   type: string
+  hasSubcategories?: boolean
 }) => (
   <button
     onClick={onClick}
@@ -270,47 +34,101 @@ const AnimButton = ({
   >
     <div className="button__line"></div>
     <div className="button__line"></div>
-    <span className="button__text">{category}</span>
+    <span className="button__text flex items-center justify-center gap-2">
+      {category}
+      {hasSubcategories && (
+        <ChevronDown
+          className={cn(
+            "w-3.5 h-3.5 transition-transform duration-300 opacity-70",
+            isActive ? "rotate-180" : "rotate-0"
+          )}
+        />
+      )}
+    </span>
     <div className="button__drow1"></div>
     <div className="button__drow2"></div>
   </button>
 )
 
+const subCategoryMeta: Record<string, { icon: React.ReactNode; label: string; description: string }> = {
+  "Wedding": {
+    icon: <Camera className="w-3 h-3" />,
+    label: "Wedding",
+    description: "The Ceremony",
+  },
+  "Traditional/Engagement": {
+    icon: <Heart className="w-3 h-3" />,
+    label: "Traditional",
+    description: "Engagement",
+  },
+  "Prewedding": {
+    icon: <Sparkles className="w-3 h-3" />,
+    label: "Prewedding",
+    description: "Before the Day",
+  },
+}
+
 const SubCategoryButton = ({
   category,
   isActive,
   onClick,
-  buttonRef,
+  onRef,
 }: {
   category: string
   isActive: boolean
   onClick: () => void
-  buttonRef?: (el: HTMLButtonElement | null) => void
-}) => (
-  <button
-    ref={buttonRef}
-    onClick={onClick}
-    className={cn(
-      "relative px-6 py-2.5 rounded-full text-[10px] tracking-[0.25em] uppercase transition-colors duration-500 z-10 whitespace-nowrap",
-      isActive
-        ? "text-background font-medium"
-        : "text-muted-foreground hover:text-foreground transition-all duration-300"
-    )}
-  >
-    {category}
-  </button>
-)
+  onRef?: (el: HTMLButtonElement | null) => void
+}) => {
+  const meta = subCategoryMeta[category]
+  return (
+    <button
+      ref={onRef}
+      onClick={onClick}
+      className={cn(
+        "relative z-10 flex flex-col items-center gap-1 px-5 py-3 transition-all duration-500 outline-none",
+        "min-w-[80px] sm:min-w-[100px] md:min-w-[110px]",
+        isActive ? "text-foreground" : "text-muted-foreground/60 hover:text-muted-foreground"
+      )}
+    >
+      {/* Icon circle - scales up when active */}
+      <span className={cn(
+        "flex items-center justify-center w-6 h-6 rounded-full transition-all duration-500",
+        isActive
+          ? "text-[#8B6914] bg-[#c8a96e]/10 scale-110"
+          : "text-muted-foreground/50 bg-transparent scale-100"
+      )}>
+        {meta?.icon}
+      </span>
+
+      {/* Label - magnifies when active */}
+      <span className={cn(
+        "font-serif text-[10px] sm:text-[11px] tracking-[0.15em] uppercase leading-none transition-all duration-500 mt-1 origin-center",
+        isActive ? "font-semibold text-foreground scale-125 translate-y-0.5" : "scale-100"
+      )}>
+        {meta?.label || category}
+      </span>
+
+      {/* Sub-description */}
+      <span className={cn(
+        "text-[8px] tracking-[0.15em] uppercase leading-none transition-all duration-500 hidden sm:block mt-0.5",
+        isActive ? "text-[#c8a96e] opacity-100 translate-y-0.5" : "text-transparent opacity-0 -translate-y-2"
+      )}>
+        {meta?.description}
+      </span>
+    </button>
+  )
+}
 
 export function PortfolioSection() {
   const [activeCategory, setActiveCategory] = useState("All")
-  const [activeSubCategory, setActiveSubCategory] = useState("All Weddings")
+  const [activeSubCategory, setActiveSubCategory] = useState("Traditional/Engagement")
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [isOpen, setIsOpen] = useState(false)
 
-  // Refs for dynamic pill measurement
+  // Refs for sliding indicator
   const tabsRef = useRef<HTMLDivElement>(null)
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([])
-  const [pillStyle, setPillStyle] = useState({ left: 0, width: 0, opacity: 0 })
+  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 })
 
   useLayoutEffect(() => {
     if (activeCategory === "Weddings") {
@@ -318,16 +136,15 @@ export function PortfolioSection() {
       const activeButton = buttonRefs.current[idx]
       if (activeButton && tabsRef.current) {
         const { offsetLeft, offsetWidth } = activeButton
-        setPillStyle({
+        setIndicatorStyle({
           left: offsetLeft,
           width: offsetWidth,
-          opacity: 1
         })
       }
-    } else {
-      setPillStyle(prev => ({ ...prev, opacity: 0 }))
     }
-  }, [activeCategory, activeSubCategory])
+  }, [activeCategory, activeSubCategory, weddingSubCategories])
+
+  // no longer needed - removed pill measurement refs
 
   const filteredImages = (() => {
     // 1. If All is selected, show only non-exclusive images
@@ -339,12 +156,12 @@ export function PortfolioSection() {
 
     // 2. If Weddings is selected
     if (activeCategory === "Weddings") {
-      // If "All Weddings" (default), show only non-exclusive wedding images
-      if (activeSubCategory === "All Weddings") {
-        return categoryImages.filter(img => !img.isSubExclusive)
+      // If "Wedding" is selected, show all non-exclusive wedding images AND exclusive "Wedding" images
+      // (This effectively makes the Wedding tab show EVERYTHING except other categories' exclusives)
+      if (activeSubCategory === "Wedding") {
+        return categoryImages.filter(img => !img.isSubExclusive || img.subCategory === "Wedding")
       }
-      // If a specific sub-category is selected, show only images for that sub-category
-      // These are the exclusive high-quality images provided by the user
+      // If a specific sub-category (Traditional or Prewedding) is selected, show only its exclusive images
       return categoryImages.filter(img => img.subCategory === activeSubCategory && img.isSubExclusive)
     }
 
@@ -353,7 +170,7 @@ export function PortfolioSection() {
 
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category)
-    setActiveSubCategory("All Weddings")
+    setActiveSubCategory("Traditional/Engagement")
     setSelectedIndex(0)
   }
 
@@ -400,35 +217,49 @@ export function PortfolioSection() {
                   isActive={activeCategory === category}
                   onClick={() => handleCategoryChange(category)}
                   type={type}
+                  hasSubcategories={category === "Weddings"}
                 />
               )
             })}
           </div>
 
-          {/* Sub-category Filter for Weddings - FLAWLESS DYNAMIC PILL */}
+          {/* Sub-category Filter for Weddings — Editorial Tabs */}
           {activeCategory === "Weddings" && (
-            <div className="flex justify-center px-4 animate-in fade-in zoom-in-95 slide-in-from-top-4 duration-700 w-full">
+            <div className="flex flex-col items-center gap-6 animate-in fade-in slide-in-from-top-4 duration-700 w-full">
+
+              {/* Decorative label row */}
+              <div className="flex items-center gap-4 w-full max-w-sm">
+                <span className="flex-1 h-px bg-gradient-to-r from-transparent to-[#c8a96e]/40" />
+                <p className="font-serif text-[10px] tracking-[0.35em] uppercase text-[#c8a96e]/80 whitespace-nowrap">
+                  Browse by Style
+                </p>
+                <span className="flex-1 h-px bg-gradient-to-l from-transparent to-[#c8a96e]/40" />
+              </div>
+
+              {/* Tab cards row */}
               <div
                 ref={tabsRef}
-                className="relative p-1.5 bg-foreground/[0.03] backdrop-blur-2xl rounded-full flex items-center justify-start md:justify-center border border-foreground/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.04)] overflow-x-auto max-w-full no-scrollbar"
+                className="relative flex flex-wrap justify-center p-2 rounded-[30px] bg-secondary border border-border backdrop-blur-sm"
               >
-                {/* Dynamic Sliding Background */}
+                {/* Sliding Glass Pill Indicator */}
                 <div
-                  className="absolute h-[calc(100%-0.75rem)] bg-foreground rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all duration-600 ease-[cubic-bezier(0.23,1,0.32,1)]"
+                  className="absolute top-1.5 bottom-1.5 rounded-[24px] bg-background shadow-sm border border-border transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] z-0"
                   style={{
-                    left: `${pillStyle.left}px`,
-                    width: `${pillStyle.width}px`,
-                    opacity: pillStyle.opacity,
+                    left: `${indicatorStyle.left}px`,
+                    width: `${indicatorStyle.width}px`,
                   }}
-                />
+                >
+                  {/* Internal shine/highlight for extra glass effect */}
+                  <div className="absolute inset-0 rounded-[24px] bg-gradient-to-tr from-white/40 to-transparent opacity-50" />
+                </div>
 
                 {weddingSubCategories.map((sub, idx) => (
                   <SubCategoryButton
                     key={sub}
                     category={sub}
-                    buttonRef={(el) => (buttonRefs.current[idx] = el)}
                     isActive={activeSubCategory === sub}
                     onClick={() => handleSubCategoryChange(sub)}
+                    onRef={(el) => (buttonRefs.current[idx] = el)}
                   />
                 ))}
               </div>
@@ -479,7 +310,7 @@ export function PortfolioSection() {
                   {/* Image Container */}
                   <div className="relative w-full h-full flex items-center justify-center p-4">
                     <Image
-                      src={filteredImages[selectedIndex]?.src || "/placeholder.svg"}
+                      src={filteredImages[selectedIndex]?.src || "/assets/placeholders/placeholder.svg"}
                       alt={filteredImages[selectedIndex]?.alt || "Portfolio Image"}
                       fill
                       className="object-contain"
