@@ -47,13 +47,12 @@ export function HeroSection() {
               : "text-[#ff9d4d] drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]"
           )}
         >
-          AlbaExperience
         </p>
         <h1 className="text-4xl md:text-7xl lg:text-8xl font-light text-white mb-6 leading-tight text-balance drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
           Capturing Your Most Precious Moments
         </h1>
         <p className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
-          Elegant, timeless, and authentic. From weddings and graduations to portraits and special events, we capture the emotions that define your story.
+          Elegant, timeless, and authentic. From weddings to portraits and special events, we capture the emotions that define your story.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="#portfolio" className="premium-button">

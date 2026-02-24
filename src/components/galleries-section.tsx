@@ -112,6 +112,36 @@ const galleryData = [
         text: "FBN NYC",
         link: "https://alba-experience.client-gallery.com/gallery/fbn-nyc",
         image: "/galleries/fbn_nyc.avif"
+    },
+    {
+        text: "DR.ODAME'S FUNERAL",
+        link: "https://alba-experience.client-gallery.com/gallery/dr-wilfred-odame",
+        image: "/galleries/DR WILFRED ODAME funeral.avif"
+    },
+    {
+        text: "DK @ ONE",
+        link: "https://alba-experience.client-gallery.com/gallery/dk-one",
+        image: "/galleries/DK @ ONE.avif"
+    },
+    {
+        text: "LIVINGSTONE HOUSE AGM",
+        link: "https://alba-experience.client-gallery.com/gallery/livingstone-house-2025-agm",
+        image: "/galleries/Livingstone House 2025 AGM.avif"
+    },
+    {
+        text: "ADINKRAH CHRISTENING",
+        link: "https://alba-experience.client-gallery.com/gallery/adinkrah-baby-naming",
+        image: "/galleries/Adinkra_christening.avif"
+    },
+    {
+        text: "BABY PAISLEY",
+        link: "https://alba-experience.client-gallery.com/gallery/baby-paisley",
+        image: "/galleries/baby_paisley.avif"
+    },
+    {
+        text: "ERNESON'S BIRTHDAY",
+        link: "https://alba-experience.client-gallery.com/gallery/erneson-birthday-party",
+        image: "/galleries/erneson_birthday.avif"
     }
 ]
 

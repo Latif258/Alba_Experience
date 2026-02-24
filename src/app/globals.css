@@ -530,6 +530,7 @@ html {
   box-shadow: 5px 5px 12px var(--neu-dark), -5px -5px 12px var(--neu-light);
 }
 
+/* Instagram - far left */
 .social-buttons .instagram-button:hover {
   background: #F914AF;
   color: white;
@@ -539,15 +540,17 @@ html {
   translate: -70px 0px;
 }
 
+/* WhatsApp - upper left */
 .social-buttons .whatsapp-button:hover {
   background: #25D366;
   color: white;
 }
 
 .social-buttons:hover .whatsapp-button {
-  translate: -47px -47px;
+  translate: -55px -44px;
 }
 
+/* Email - top center */
 .social-buttons .email-button:hover {
   background: var(--primary);
   color: var(--primary-foreground);
@@ -555,6 +558,26 @@ html {
 
 .social-buttons:hover .email-button {
   translate: 0px -70px;
+}
+
+/* Facebook - upper right */
+.social-buttons .facebook-button:hover {
+  background: #1877F2;
+  color: white;
+}
+
+.social-buttons:hover .facebook-button {
+  translate: 55px -44px;
+}
+
+/* Threads - far right */
+.social-buttons .threads-button:hover {
+  background: #000000;
+  color: white;
+}
+
+.social-buttons:hover .threads-button {
+  translate: 70px 0px;
 }
 
 /* For mobile, we might want to scale it down slightly or adjust the spread */
@@ -573,11 +596,19 @@ html {
   }
 
   .social-buttons:hover .whatsapp-button {
-    translate: -42px -42px;
+    translate: -46px -38px;
   }
 
   .social-buttons:hover .email-button {
     translate: 0px -60px;
+  }
+
+  .social-buttons:hover .facebook-button {
+    translate: 46px -38px;
+  }
+
+  .social-buttons:hover .threads-button {
+    translate: 60px 0px;
   }
 }
 

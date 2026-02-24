@@ -11,10 +11,25 @@ const footerLinks = [
   { href: "/#contact", label: "Contact" },
 ]
 
+const FacebookIcon = () => (
+  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+  </svg>
+)
+
+const ThreadsIcon = () => (
+  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94" />
+  </svg>
+)
+
 const socialLinks = [
   { href: "https://www.instagram.com/alba_experience?igsh=ZG1vMGh1dnR5Z2xy", icon: Instagram, label: "Instagram" },
   { href: "https://wa.me/233530458823", icon: MessageCircle, label: "WhatsApp" },
   { href: "mailto:albaexperiencestudios@gmail.com", icon: Mail, label: "Email" },
+  { href: "https://www.facebook.com/collins.sarpong.948/?http_ref=eyJ0cyI6MTc3MTg5MTA5MDAwMCwiciI6IiJ9", icon: FacebookIcon, label: "Facebook" },
+  { href: "https://www.threads.com/@alba_experience?igshid=NTc4MTIwNjQ2YQ==", icon: ThreadsIcon, label: "Threads" },
 ]
 
 export function Footer() {
@@ -24,9 +39,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div className="md:col-span-2">
-            <Link href="/" className="relative h-24 w-48 mb-4 block">
+            <Link href="/" className="relative h-32 w-64 mb-4 block">
               <Image
-                src="/assets/branding/footer-logo.png"
+                src="/assets/branding/Classic Alba logo_4.png"
                 alt="Alba Experience"
                 fill
                 className="object-contain"

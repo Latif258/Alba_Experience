@@ -1,74 +1,37 @@
 import { PortfolioImage } from "./types";
 
 export const eventsImages: PortfolioImage[] = [
-    {
-        src: "/portfolio/events/family-portrait-new.jpeg",
-        alt: "New beautiful family portrait",
-        category: "Events",
-        aspect: "aspect-[3/4]"
-    },
-    {
-        src: "/portfolio/events/family-moment-1.jpg",
-        alt: "Joyful multi-generational family portrait",
-        category: "Events",
-        aspect: "aspect-[4/3]"
-    },
-    {
-        src: "/portfolio/events/family-moment-2.jpg",
-        alt: "Candid family moment during celebration",
-        category: "Events",
-        aspect: "aspect-[4/3]"
-    },
-    {
-        src: "/portfolio/events/family-moment-3.jpg",
-        alt: "Solemn family prayer and blessing ceremony",
-        category: "Events",
-        aspect: "aspect-[4/3]"
-    },
-    {
-        src: "/portfolio/events/family-moment-4.jpg",
-        alt: "Traditional family gathering and ceremony",
-        category: "Events",
-        aspect: "aspect-[3/4]"
-    },
-    {
-        src: "/portfolio/events/bridesmaids-group.jpg",
-        alt: "Joyful bridal party group portrait",
-        category: "Events",
-        aspect: "aspect-[16/9]"
-    },
-    {
-        src: "/portfolio/events/groomsmen-overhead.jpg",
-        alt: "Creative overhead shot of groomsmen",
-        category: "Events",
-        aspect: "aspect-[4/3]"
-    },
-    {
-        src: "/portfolio/events/graduation.png",
-        alt: "Graduation celebration moment",
-        category: "Events",
-        isSubExclusive: true,
-        aspect: "aspect-[4/3]"
-    },
-    {
-        src: "/portfolio/events/graduation-2.jpg",
-        alt: "Graduation portrait 2",
-        category: "Events",
-        isSubExclusive: true,
-        aspect: "aspect-[3/4]"
-    },
-    {
-        src: "/portfolio/events/graduation-4.jpg",
-        alt: "Graduation portrait 4",
-        category: "Events",
-        isSubExclusive: true,
-        aspect: "aspect-[4/3]"
-    },
-    {
-        src: "/portfolio/events/graduation-7.jpg",
-        alt: "Graduation portrait 7",
-        category: "Events",
-        isSubExclusive: true,
-        aspect: "aspect-[3/4]"
-    },
+    { src: "/portfolio/events/event_images (1).avif", alt: "Event Photography 1", category: "Events", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/events/event_images (2).avif", alt: "Event Photography 2", category: "Events", isSubExclusive: true, aspect: "aspect-[4/3]" },
+    { src: "/portfolio/events/event_images (3).avif", alt: "Event Photography 3", category: "Events", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/events/event_images (4).avif", alt: "Event Photography 4", category: "Events", isSubExclusive: true, aspect: "aspect-[4/3]" },
+    { src: "/portfolio/events/event_images (5).avif", alt: "Event Photography 5", category: "Events", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/events/event_images (6).avif", alt: "Event Photography 6", category: "Events", isSubExclusive: true, aspect: "aspect-[4/3]" },
+    { src: "/portfolio/events/event_images (7).avif", alt: "Event Photography 7", category: "Events", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/events/event_images (8).avif", alt: "Event Photography 8", category: "Events", isSubExclusive: true, aspect: "aspect-[4/3]" },
+    { src: "/portfolio/events/event_images (9).avif", alt: "Event Photography 9", category: "Events", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/events/event_images (10).avif", alt: "Event Photography 10", category: "Events", isSubExclusive: true, aspect: "aspect-[4/3]" },
+    { src: "/portfolio/events/event_images (11).avif", alt: "Event Photography 11", category: "Events", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/events/event_images (12).avif", alt: "Event Photography 12", category: "Events", isSubExclusive: true, aspect: "aspect-[4/3]" },
+    { src: "/portfolio/events/event_images (13).avif", alt: "Event Photography 13", category: "Events", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/events/event_images (14).avif", alt: "Event Photography 14", category: "Events", isSubExclusive: true, aspect: "aspect-[4/3]" },
+    { src: "/portfolio/events/event_images (15).avif", alt: "Event Photography 15", category: "Events", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/events/event_images (16).avif", alt: "Event Photography 16", category: "Events", isSubExclusive: true, aspect: "aspect-[4/3]" },
+    { src: "/portfolio/events/event_images (17).avif", alt: "Event Photography 17", category: "Events", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/events/event_images (18).avif", alt: "Event Photography 18", category: "Events", isSubExclusive: true, aspect: "aspect-[4/3]" },
+    { src: "/portfolio/events/event_images (19).avif", alt: "Event Photography 19", category: "Events", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/events/event_images (20).avif", alt: "Event Photography 20", category: "Events", isSubExclusive: true, aspect: "aspect-[4/3]" },
+    { src: "/portfolio/events/event_images (21).avif", alt: "Event Photography 21", category: "Events", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/events/event_images (22).avif", alt: "Event Photography 22", category: "Events", isSubExclusive: true, aspect: "aspect-[4/3]" },
+    { src: "/portfolio/events/event_images (23).avif", alt: "Event Photography 23", category: "Events", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/events/event_images (24).avif", alt: "Event Photography 24", category: "Events", isSubExclusive: true, aspect: "aspect-[4/3]" },
+    { src: "/portfolio/events/event_images (25).avif", alt: "Event Photography 25", category: "Events", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/events/event_images (26).avif", alt: "Event Photography 26", category: "Events", isSubExclusive: true, aspect: "aspect-[4/3]" },
+    { src: "/portfolio/events/event_images (27).avif", alt: "Event Photography 27", category: "Events", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/events/event_images (28).avif", alt: "Event Photography 28", category: "Events", isSubExclusive: true, aspect: "aspect-[4/3]" },
+    { src: "/portfolio/events/event_images (29).avif", alt: "Event Photography 29", category: "Events", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/events/event_images (30).avif", alt: "Event Photography 30", category: "Events", isSubExclusive: true, aspect: "aspect-[4/3]" },
+    { src: "/portfolio/events/event_images (31).avif", alt: "Event Photography 31", category: "Events", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/events/event_images (32).avif", alt: "Event Photography 32", category: "Events", isSubExclusive: true, aspect: "aspect-[4/3]" },
+    { src: "/portfolio/events/event_images (33).avif", alt: "Event Photography 33", category: "Events", isSubExclusive: true, aspect: "aspect-[3/4]" },
 ];

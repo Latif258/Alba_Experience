@@ -6,13 +6,33 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-const contactInfo = [
+type ContactItem = {
+  icon: any
+  label: string
+} & (
+    | {
+      items: {
+        value: string
+        href: string
+        subLabel?: string
+      }[]
+      value?: never
+      href?: never
+    }
+    | {
+      value: string
+      href: string | null
+      items?: never
+    }
+  )
+
+const contactInfo: ContactItem[] = [
   {
     icon: Mail,
     label: "Email",
     items: [
       { value: "albaexperiencestudios@gmail.com", href: "mailto:albaexperiencestudios@gmail.com" },
-      { value: "jettasamoah@gmail.com", href: "mailto:jettasamoah@gmail.com", subLabel: "Backup" },
+      { value: "jettasamoah@gmail.com", href: "mailto:jettasamoah@gmail.com" },
     ],
   },
   {
@@ -48,7 +68,7 @@ export function ContactSection() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    const FORM_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID || 'maqdoeva'
+    const FORM_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID || ''
 
     try {
       const response = await fetch(`https://formspree.io/f/${FORM_ID}`, {

@@ -61,7 +61,7 @@ export function Navigation() {
     >
       <nav className="mx-auto max-w-7xl px-6">
         <div className="flex items-center justify-between">
-          <Link href="/" className="relative h-10 w-32 md:h-12 md:w-44 transition-all duration-500 hover:scale-105 active:scale-95">
+          <Link href="/" className="relative h-14 w-44 md:h-16 md:w-56 transition-all duration-500 hover:scale-105 active:scale-95">
             <Image
               src="/assets/branding/logo.png"
               alt="Alba Experience"
@@ -81,7 +81,7 @@ export function Navigation() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "text-xs tracking-[0.2em] uppercase transition-all duration-300 font-semibold hover:opacity-70",
+                  "text-sm tracking-[0.2em] uppercase transition-all duration-300 font-bold hover:opacity-70",
                   isDarkContent
                     ? "text-foreground drop-shadow-[0_1px_1px_rgba(255,255,255,0.5)]"
                     : "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]"

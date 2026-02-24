@@ -119,7 +119,9 @@ export const weddingImages: PortfolioImage[] = [
     { src: "/portfolio/weddings/wedding/bridesmaids-yellow.jpg", alt: "Bridesmaids in Yellow", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[4/3]" },
     { src: "/portfolio/weddings/wedding/couple-stone-wall.jpg", alt: "Couple by Stone Wall", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[3/4]", objectPosition: "object-[130%_right]" },
     { src: "/portfolio/weddings/wedding/groomsmen.jpg", alt: "Groomsmen", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[4/3]" },
-    { src: "/portfolio/weddings/wedding/traditional-couple.jpg", alt: "Traditional Couple", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/weddings/wedding/all_wedding6.avif", alt: "All Wedding 6", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/weddings/wedding/all_wedding7.avif", alt: "All Wedding 7", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[3/4]" },
+    { src: "/portfolio/weddings/wedding/all_wedding8.avif", alt: "All Wedding 8", category: "Weddings", subCategory: "Wedding", isSubExclusive: true, aspect: "aspect-[3/4]" },
 ];
 
 // --- Client Galleries (Visible in "All" only) ---

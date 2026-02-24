@@ -32,6 +32,12 @@ export const corporateImages: PortfolioImage[] = [
         aspect: "aspect-[3/4]"
     },
     {
+        src: "/portfolio/corporate/corperate_image12.avif",
+        alt: "Corporate Photography 12",
+        category: "Corporate",
+        aspect: "aspect-[4/3]"
+    },
+    {
         src: "/portfolio/corporate/corperate_image6.jpeg",
         alt: "Corporate Photography 6",
         category: "Corporate",
@@ -47,6 +53,30 @@ export const corporateImages: PortfolioImage[] = [
     {
         src: "/portfolio/corporate/corperate_image8.avif",
         alt: "Corporate Photography 8",
+        category: "Corporate",
+        aspect: "aspect-[4/3]"
+    },
+    {
+        src: "/portfolio/corporate/corperate_image9.avif",
+        alt: "Corporate Photography 9",
+        category: "Corporate",
+        aspect: "aspect-[3/4]"
+    },
+    {
+        src: "/portfolio/corporate/corperate_image10.avif",
+        alt: "Corporate Photography 10",
+        category: "Corporate",
+        aspect: "aspect-[4/3]"
+    },
+    {
+        src: "/portfolio/corporate/corperate_image11.avif",
+        alt: "Corporate Photography 11",
+        category: "Corporate",
+        aspect: "aspect-[3/4]"
+    },
+    {
+        src: "/portfolio/corporate/corperate_image13.avif",
+        alt: "Corporate Photography 13",
         category: "Corporate",
         aspect: "aspect-[4/3]"
     },

@@ -14,7 +14,7 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   title: 'Alba Experience | Premium Photography in Ghana',
-  description: 'Capturing timeless moments with an elegant, authentic touch. Specialist in Wedding, Prewedding, Traditional Engagement, Graduation, and Portrait photography in Ghana.',
+  description: 'Capturing timeless moments with an elegant, authentic touch. Specialist in Wedding, Prewedding, Traditional Engagement, and Portrait photography in Ghana.',
   keywords: ['Photography Ghana', 'Wedding Photographer Accra', 'Alba Experience', 'Prewedding Photography', 'Ghanaian Wedding', 'Event Photography Ghana'],
   authors: [{ name: 'Alba Experience' }],
   openGraph: {
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: 'Alba Experience | Premium Photography in Ghana',
     description: 'Elegant and authentic photography capturing your most precious moments.',
   },
-  generator: 'v0.app',
+
 }
 
 export default function RootLayout({

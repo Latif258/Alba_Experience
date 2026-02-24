@@ -1,23 +1,17 @@
-import { Camera, Heart, GraduationCap, Users } from "lucide-react"
+import { Camera, Heart, Users, VideoIcon, VideotapeIcon } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
 const services = [
   {
     icon: Heart,
-    title: "Weddings & Unions",
+    title: "Weddings",
     description: "From intimate elopements to grand celebrations, I document the authentic emotions and timeless moments of your special day.",
     image: "/portfolio/weddings/wedding/wedding (1).avif"
   },
   {
-    icon: GraduationCap,
-    title: "Graduations",
-    description: "Celebrate your academic achievements with professional portraits that capture your pride, joy, and the beginning of a new chapter.",
-    image: "/portfolio/events/graduation.png"
-  },
-  {
     icon: Users,
-    title: "Family Portraits",
+    title: "Portraits",
     description: "Timeless family photography that freezes fleeting moments. Perfect for annual cards, maternity, newborn, or generational gatherings.",
     image: "/portfolio/events/family-portrait-new.jpeg"
   },
@@ -27,6 +21,12 @@ const services = [
     description: "Elevate your brand or document your corporate gatherings with crisp, professional imagery that speaks to your organization's excellence.",
     image: "/portfolio/corporate/corperate_image6.jpeg"
   },
+  {
+    icon: VideoIcon,
+    title: "Videos",
+    description: "Elevate your brand or document all your events and memories with crisp, professional videography that tells your story.",
+    image: "/assets/service_images/videography_pic_service.avif"
+  }
 ]
 
 export function ServicesSection() {
