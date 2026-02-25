@@ -193,7 +193,7 @@ const photoVideoPackages = [
     {
         name: "Mega",
         price: "GHS 32,000",
-        image: "/portfolio/events/bridesmaids-group.jpg",
+        image: "/portfolio/weddings/traditional-engagement/traditional- (18).avif",
         objectPosition: "object-center",
         description: "Comprehensive photo and video photojournalism.",
         coverage: [
@@ -304,28 +304,28 @@ function PackageCard({ pkg }: { pkg: WeddingPackage }) {
                     <CardTitle className="text-2xl font-light text-primary">{pkg.name}</CardTitle>
                     <div className="text-2xl font-bold mt-1 text-foreground">{pkg.price}</div>
                 </div>
-                {pkg.description && <CardDescription className="text-base">{pkg.description}</CardDescription>}
+                {pkg.description && <CardDescription className="text-base font-semibold text-foreground/90">{pkg.description}</CardDescription>}
             </CardHeader>
             <CardContent className="flex-1 space-y-8">
                 <div>
-                    <h4 className="flex items-center gap-2 font-medium mb-4 text-sm uppercase tracking-wider text-muted-foreground">
+                    <h4 className="flex items-center gap-2 font-bold mb-4 text-sm uppercase tracking-wider text-primary">
                         <Info className="w-5 h-5" /> Coverage
                     </h4>
                     <ul className="space-y-3">
                         {pkg.coverage.map((item: string, i: number) => (
-                            <li key={i} className="flex items-start gap-3 text-base text-foreground/90">
-                                <Check className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                            <li key={i} className="flex items-start gap-3 text-base font-medium text-foreground">
+                                <Check className="w-5 h-5 text-primary mt-0.5 shrink-0" strokeWidth={3} />
                                 <span>{item}</span>
                             </li>
                         ))}
                     </ul>
                 </div>
                 <div>
-                    <h4 className="font-medium mb-4 text-sm uppercase tracking-wider text-muted-foreground">Deliverables</h4>
+                    <h4 className="font-bold mb-4 text-sm uppercase tracking-wider text-primary">Deliverables</h4>
                     <ul className="space-y-3">
                         {pkg.deliverables.map((item: string, i: number) => (
-                            <li key={i} className="flex items-start gap-3 text-base text-foreground/90">
-                                <span className="w-2 h-2 rounded-full bg-primary/40 mt-2 shrink-0" />
+                            <li key={i} className="flex items-start gap-3 text-base font-medium text-foreground">
+                                <span className="w-2 h-2 rounded-full bg-primary/60 mt-2 shrink-0" />
                                 <span>{item}</span>
                             </li>
                         ))}

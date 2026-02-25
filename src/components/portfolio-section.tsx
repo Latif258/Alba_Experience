@@ -1,12 +1,12 @@
 "use client"
 
-import { useState, useRef, useLayoutEffect } from "react"
+import { useState, useRef, useLayoutEffect, useEffect } from "react"
 import Image from "next/image"
 import { portfolioImages, type PortfolioImage } from "@/data/portfolio"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { ChevronLeft, ChevronRight, ChevronDown, X, Heart, Sparkles, Camera, Star, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 const mainCategories = ["All", "Weddings", "Events", "Portraits", "Corporate"]
@@ -141,6 +141,8 @@ export function PortfolioSection() {
   const [activeSubCategory, setActiveSubCategory] = useState("Traditional/Engagement")
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [isOpen, setIsOpen] = useState(false)
+  const [direction, setDirection] = useState(0)
+  const [showSwipeHint, setShowSwipeHint] = useState(false)
 
   // Refs for sliding indicator
   const tabsRef = useRef<HTMLDivElement>(null)
@@ -159,7 +161,21 @@ export function PortfolioSection() {
         indicator.style.width = `${offsetWidth}px`
       }
     }
-  }, [activeCategory, activeSubCategory, weddingSubCategories, portraitSubCategories])
+  }, [activeCategory, activeSubCategory])
+
+  useEffect(() => {
+    if (isOpen && window.innerWidth < 768) {
+      const hintSeen = sessionStorage.getItem("portfolio_swipe_hint_seen")
+      if (!hintSeen) {
+        setShowSwipeHint(true)
+        const timer = setTimeout(() => {
+          setShowSwipeHint(false)
+          sessionStorage.setItem("portfolio_swipe_hint_seen", "true")
+        }, 3500)
+        return () => clearTimeout(timer)
+      }
+    }
+  }, [isOpen])
 
   // no longer needed - removed pill measurement refs
 
@@ -207,11 +223,15 @@ export function PortfolioSection() {
     setSelectedIndex(0)
   }
 
-  const handlePrevious = () => {
+  const handlePrevious = (e?: React.MouseEvent) => {
+    e?.stopPropagation()
+    setDirection(-1)
     setSelectedIndex((prev) => (prev === 0 ? filteredImages.length - 1 : prev - 1))
   }
 
-  const handleNext = () => {
+  const handleNext = (e?: React.MouseEvent) => {
+    e?.stopPropagation()
+    setDirection(1)
     setSelectedIndex((prev) => (prev === filteredImages.length - 1 ? 0 : prev + 1))
   }
 
@@ -333,15 +353,13 @@ export function PortfolioSection() {
                       quality={90}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
-                    <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors duration-300" />
-                    <div className="absolute bottom-0 left-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <p className="text-primary-foreground text-sm tracking-widest uppercase">
-                        {image.category}{image.subCategory ? ` / ${image.subCategory}` : ''}
-                      </p>
-                    </div>
+                    <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-300" />
                   </div>
                 </DialogTrigger>
-                <DialogContent className="max-w-5xl w-[95vw] sm:w-full h-[80vh] sm:h-[90vh] p-0 bg-foreground/95 border-none">
+                <DialogContent
+                  showCloseButton={false}
+                  className="!max-w-none !w-screen !h-screen fixed !inset-0 !top-0 !left-0 !translate-x-0 !translate-y-0 p-0 m-0 bg-black/20 backdrop-blur-md border-none shadow-none flex flex-col justify-center items-center overflow-hidden rounded-none z-[100]"
+                >
                   <DialogHeader className="sr-only">
                     <DialogTitle>
                       {filteredImages[selectedIndex]?.alt || "Portfolio Image"}
@@ -351,52 +369,106 @@ export function PortfolioSection() {
                     </DialogDescription>
                   </DialogHeader>
 
-                  {/* Image Container */}
-                  <div className="relative w-full h-full flex items-center justify-center p-4">
-                    <Image
-                      src={filteredImages[selectedIndex]?.src || "/assets/placeholders/placeholder.svg"}
-                      alt={filteredImages[selectedIndex]?.alt || "Portfolio Image"}
-                      fill
-                      className="object-contain"
-                      quality={95}
-                      sizes="95vw"
-                    />
+                  {/* Image Container with Swipe */}
+                  <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+                    <AnimatePresence initial={false} custom={direction}>
+                      <motion.div
+                        key={selectedIndex}
+                        custom={direction}
+                        initial={{ opacity: 0, x: direction > 0 ? 300 : -300 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: direction > 0 ? -300 : 300 }}
+                        transition={{
+                          x: { type: "spring", stiffness: 300, damping: 30 },
+                          opacity: { duration: 0.2 }
+                        }}
+                        drag="x"
+                        dragConstraints={{ left: 0, right: 0 }}
+                        dragElastic={1}
+                        onDragEnd={(e, { offset, velocity }) => {
+                          const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500
+                          if (swipe && offset.x > 0) {
+                            handlePrevious()
+                          } else if (swipe && offset.x < 0) {
+                            handleNext()
+                          }
+                        }}
+                        className="absolute inset-0 flex items-center justify-center p-6 md:p-12 lg:p-20 touch-none"
+                      >
+                        <Image
+                          src={filteredImages[selectedIndex]?.src || "/assets/placeholders/placeholder.svg"}
+                          alt={filteredImages[selectedIndex]?.alt || "Portfolio Image"}
+                          fill
+                          className="object-contain pointer-events-none"
+                          quality={95}
+                          sizes="100vw"
+                          priority
+                        />
+                      </motion.div>
+                    </AnimatePresence>
+
+                    {/* Swipe Hint Overlay */}
+                    <AnimatePresence>
+                      {showSwipeHint && (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="absolute inset-0 z-20 flex items-center justify-center bg-black/20 pointer-events-none"
+                        >
+                          <div className="flex flex-col items-center gap-4 text-white">
+                            <motion.div
+                              animate={{ x: [-20, 20, -20] }}
+                              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                            >
+                              <div className="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center">
+                                <ChevronRight className="w-6 h-6" />
+                              </div>
+                            </motion.div>
+                            <p className="text-sm tracking-widest uppercase font-medium">Swipe to Navigate</p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
 
-                  {/* Navigation Controls */}
-                  <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4 pointer-events-none z-10">
+                  {/* Navigation Controls - Desktop ONLY, Far Edges */}
+                  <div className="hidden md:block">
                     <Button
                       variant="ghost"
                       size="icon"
-                      onClick={handlePrevious}
-                      className="pointer-events-auto bg-background/10 hover:bg-background/20 text-primary-foreground backdrop-blur-sm rounded-full h-12 w-12"
+                      onClick={(e) => handlePrevious(e)}
+                      className="fixed left-8 lg:left-16 top-1/2 -translate-y-1/2 z-[110] bg-white/10 hover:bg-white/20 text-white backdrop-blur-md rounded-full h-20 w-20 group transition-all"
                     >
-                      <ChevronLeft className="h-6 w-6" />
+                      <ChevronLeft className="h-10 w-10 transition-transform group-hover:-translate-x-1" />
                       <span className="sr-only">Previous image</span>
                     </Button>
                     <Button
                       variant="ghost"
                       size="icon"
-                      onClick={handleNext}
-                      className="pointer-events-auto bg-background/10 hover:bg-background/20 text-primary-foreground backdrop-blur-sm rounded-full h-12 w-12"
+                      onClick={(e) => handleNext(e)}
+                      className="fixed right-8 lg:right-16 top-1/2 -translate-y-1/2 z-[110] bg-white/10 hover:bg-white/20 text-white backdrop-blur-md rounded-full h-20 w-20 group transition-all"
                     >
-                      <ChevronRight className="h-6 w-6" />
+                      <ChevronRight className="h-10 w-10 transition-transform group-hover:translate-x-1" />
                       <span className="sr-only">Next image</span>
                     </Button>
                   </div>
 
-                  {/* Close Button */}
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => setIsOpen(false)}
-                    className="absolute top-4 right-4 bg-background/10 hover:bg-background/20 text-primary-foreground backdrop-blur-sm rounded-full h-10 w-10 z-10"
-                  >
-                    <X className="h-5 w-5" />
-                    <span className="sr-only">Close</span>
-                  </Button>
+                  {/* Top Bar - Close Button Only */}
+                  <div className="fixed top-0 right-0 p-8 z-[110]">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => setIsOpen(false)}
+                      className="bg-white/10 hover:bg-white/20 text-white backdrop-blur-md rounded-full h-14 w-14 transition-all shadow-xl"
+                    >
+                      <X className="h-8 w-8" />
+                      <span className="sr-only">Close</span>
+                    </Button>
+                  </div>
+
                   {/* Image Counter */}
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-background/10 backdrop-blur-sm px-4 py-2 rounded-full text-primary-foreground text-sm z-10">
+                  <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-white/5 backdrop-blur-md border border-white/10 px-6 py-2 rounded-full text-white/80 text-xs tracking-widest z-30">
                     {selectedIndex + 1} / {filteredImages.length}
                   </div>
                 </DialogContent>
