@@ -195,7 +195,16 @@ html {
     color: var(--line_color);
     letter-spacing: 2px;
     transition: all 0.3s ease;
-    @apply cursor-pointer uppercase;
+    @apply cursor-pointer uppercase active:scale-95;
+  }
+
+  @media (max-width: 640px) {
+    .anim-button {
+      width: 150px;
+      height: 42px;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+    }
   }
 
   .button__text {
@@ -224,10 +233,23 @@ html {
     width: calc(100% - 48px * 2 - 12px);
   }
 
+  @media (max-width: 640px) {
+    .anim-button::before {
+      left: 38px;
+      width: calc(100% - 38px * 2 - 10px);
+    }
+  }
+
   .anim-button::after {
     top: 0;
     right: 48px;
     width: 6px;
+  }
+
+  @media (max-width: 640px) {
+    .anim-button::after {
+      right: 38px;
+    }
   }
 
   .button__text::before {
@@ -242,12 +264,29 @@ html {
     width: 6px;
   }
 
+  @media (max-width: 640px) {
+    .button__text::before {
+      right: 38px;
+      width: calc(100% - 38px * 2 - 10px);
+    }
+
+    .button__text::after {
+      left: 38px;
+    }
+  }
+
   .button__line {
     position: absolute;
     top: 0;
     width: 48px;
     height: 100%;
     overflow: hidden;
+  }
+
+  @media (max-width: 640px) {
+    .button__line {
+      width: 38px;
+    }
   }
 
   .button__line::before {
@@ -307,12 +346,25 @@ html {
     transform: rotate(30deg);
   }
 
+  @media (max-width: 640px) {
+    .button__drow1 {
+      left: 20px;
+    }
+  }
+
   .button__drow2 {
     top: 33px;
     left: 58px;
     width: 24px;
     height: 0;
     transform: rotate(-127deg);
+  }
+
+  @media (max-width: 640px) {
+    .button__drow2 {
+      top: 28px;
+      left: 45px;
+    }
   }
 
   .button__drow1::before,
@@ -682,6 +734,7 @@ html {
   opacity: 0.7;
   border-radius: 30px;
   filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   transition: all 0.3s ease;
   z-index: 2;
@@ -812,7 +865,86 @@ html {
   animation: premium-slideDown 0.8s ease forwards calc(var(--i) * 0.03s);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  font-family: inherit;
+}
+
+.premium-button .button-text-state p span:nth-child(1) {
+  --i: 0;
+}
+
+.premium-button .button-text-state p span:nth-child(2) {
+  --i: 1;
+}
+
+.premium-button .button-text-state p span:nth-child(3) {
+  --i: 2;
+}
+
+.premium-button .button-text-state p span:nth-child(4) {
+  --i: 3;
+}
+
+.premium-button .button-text-state p span:nth-child(5) {
+  --i: 4;
+}
+
+.premium-button .button-text-state p span:nth-child(6) {
+  --i: 5;
+}
+
+.premium-button .button-text-state p span:nth-child(7) {
+  --i: 6;
+}
+
+.premium-button .button-text-state p span:nth-child(8) {
+  --i: 7;
+}
+
+.premium-button .button-text-state p span:nth-child(9) {
+  --i: 8;
+}
+
+.premium-button .button-text-state p span:nth-child(10) {
+  --i: 9;
+}
+
+.premium-button .button-text-state p span:nth-child(11) {
+  --i: 10;
+}
+
+.premium-button .button-text-state p span:nth-child(12) {
+  --i: 11;
+}
+
+.premium-button .button-text-state p span:nth-child(13) {
+  --i: 12;
+}
+
+.premium-button .button-text-state p span:nth-child(14) {
+  --i: 13;
+}
+
+.premium-button .button-text-state p span:nth-child(15) {
+  --i: 14;
+}
+
+.premium-button .button-text-state p span:nth-child(16) {
+  --i: 15;
+}
+
+.premium-button .button-text-state p span:nth-child(17) {
+  --i: 16;
+}
+
+.premium-button .button-text-state p span:nth-child(18) {
+  --i: 17;
+}
+
+.premium-button .button-text-state p span:nth-child(19) {
+  --i: 18;
+}
+
+.premium-button .button-text-state p span:nth-child(20) {
+  --i: 19;
 }
 
 .premium-button:hover .button-text-state p span {
@@ -838,14 +970,14 @@ html {
   }
 }
 
-/* Utility to hide scrollbar but keep functionality */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
 .no-scrollbar {
   -ms-overflow-style: none;
-  scrollbar-width: none;
+  /* IE and Edge */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari and Opera */
 }
 
 @keyframes premium-slideDown {

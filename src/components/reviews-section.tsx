@@ -163,9 +163,9 @@ export function ReviewsSection() {
                         </CarouselContent>
 
                         <div className="flex justify-center gap-6 mt-12 items-center">
-                            <CarouselPrevious className="relative h-12 w-12 rounded-full border-border/50 bg-background/50 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 pointer-events-auto shadow-sm" />
+                            <CarouselPrevious aria-label="Previous Review" className="relative h-12 w-12 rounded-full border-border/50 bg-background/50 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 pointer-events-auto shadow-sm" />
                             <div className="w-12 h-[1px] bg-border/30" />
-                            <CarouselNext className="relative h-12 w-12 rounded-full border-border/50 bg-background/50 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 pointer-events-auto shadow-sm" />
+                            <CarouselNext aria-label="Next Review" className="relative h-12 w-12 rounded-full border-border/50 bg-background/50 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 pointer-events-auto shadow-sm" />
                         </div>
                     </Carousel>
                 </div>
@@ -219,6 +219,8 @@ export function ReviewsSection() {
                                                 <button
                                                     key={star}
                                                     type="button"
+                                                    title={`Rate ${star} stars`}
+                                                    aria-label={`Rate ${star} stars`}
                                                     onClick={() => setRating(star)}
                                                     className="transition-all hover:scale-110 active:scale-90"
                                                 >

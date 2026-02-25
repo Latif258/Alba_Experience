@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion"
 import { HeroBackground } from "./hero-background"
 import { cn } from "@/lib/utils"
 
@@ -39,7 +40,10 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
-        <p
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className={cn(
             "transition-all duration-700 font-bold tracking-[0.5em] uppercase text-sm sm:text-base md:text-lg mb-8 transition-opacity",
             heroTheme === "light"
@@ -47,14 +51,29 @@ export function HeroSection() {
               : "text-[#ff9d4d] drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]"
           )}
         >
-        </p>
-        <h1 className="text-4xl md:text-7xl lg:text-8xl font-light text-white mb-6 leading-tight text-balance drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+        </motion.p>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          className="text-4xl md:text-7xl lg:text-8xl font-light text-white mb-6 leading-tight text-balance drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+        >
           Capturing Your Most Precious Moments
-        </h1>
-        <p className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-md"
+        >
           Elegant, timeless, and authentic. From weddings to portraits and special events, we capture the emotions that define your story.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          className="flex flex-col sm:flex-row gap-4 justify-center"
+        >
           <Link href="#portfolio" className="premium-button">
             <div className="bg-gradient" />
             <div className="bg-spin" />
@@ -62,7 +81,7 @@ export function HeroSection() {
             <div className="button-text-state">
               <p>
                 {"VIEW PORTFOLIO".split("").map((char, i) => (
-                  <span key={i} style={{ "--i": i } as any}>
+                  <span key={i}>
                     {char === " " ? "\u00A0" : char}
                   </span>
                 ))}
@@ -77,7 +96,7 @@ export function HeroSection() {
           >
             <Link href="https://wa.me/233530458823" target="_blank" rel="noopener noreferrer">Book via WhatsApp</Link>
           </Button>
-        </div>
+        </motion.div>
       </div>
 
       {/* Scroll Indicator */}

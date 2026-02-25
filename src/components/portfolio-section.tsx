@@ -4,12 +4,14 @@ import { useState, useRef, useLayoutEffect } from "react"
 import Image from "next/image"
 import { portfolioImages, type PortfolioImage } from "@/data/portfolio"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { ChevronLeft, ChevronRight, ChevronDown, X, Heart, Sparkles, Camera, Star } from "lucide-react"
+import { ChevronLeft, ChevronRight, ChevronDown, X, Heart, Sparkles, Camera, Star, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 const mainCategories = ["All", "Weddings", "Events", "Portraits", "Corporate"]
 const weddingSubCategories = ["Traditional/Engagement", "Prewedding", "Wedding"]
+const portraitSubCategories = ["Fashion", "Family", "Studio"]
 
 const AnimButton = ({
   category,
@@ -65,6 +67,21 @@ const subCategoryMeta: Record<string, { icon: React.ReactNode; label: string; de
     icon: <Sparkles className="w-3 h-3" />,
     label: "Prewedding",
     description: "Before the Day",
+  },
+  "Fashion": {
+    icon: <Star className="w-3 h-3" />,
+    label: "Fashion",
+    description: "Style & Glamour",
+  },
+  "Family": {
+    icon: <Users className="w-3 h-3" />,
+    label: "Family",
+    description: "Generations",
+  },
+  "Studio": {
+    icon: <Camera className="w-3 h-3" />,
+    label: "Studio",
+    description: "Controlled Light",
   },
 }
 
@@ -128,21 +145,21 @@ export function PortfolioSection() {
   // Refs for sliding indicator
   const tabsRef = useRef<HTMLDivElement>(null)
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([])
-  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 })
+  const indicatorRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
-    if (activeCategory === "Weddings") {
-      const idx = weddingSubCategories.indexOf(activeSubCategory)
+    if (activeCategory === "Weddings" || activeCategory === "Portraits") {
+      const subCategories = activeCategory === "Weddings" ? weddingSubCategories : portraitSubCategories
+      const idx = subCategories.indexOf(activeSubCategory)
       const activeButton = buttonRefs.current[idx]
-      if (activeButton && tabsRef.current) {
+      const indicator = indicatorRef.current
+      if (activeButton && tabsRef.current && indicator) {
         const { offsetLeft, offsetWidth } = activeButton
-        setIndicatorStyle({
-          left: offsetLeft,
-          width: offsetWidth,
-        })
+        indicator.style.transform = `translate3d(${offsetLeft}px, 0, 0)`
+        indicator.style.width = `${offsetWidth}px`
       }
     }
-  }, [activeCategory, activeSubCategory, weddingSubCategories])
+  }, [activeCategory, activeSubCategory, weddingSubCategories, portraitSubCategories])
 
   // no longer needed - removed pill measurement refs
 
@@ -165,12 +182,23 @@ export function PortfolioSection() {
       return categoryImages.filter(img => img.subCategory === activeSubCategory && img.isSubExclusive)
     }
 
+    // 3. If Portraits is selected
+    if (activeCategory === "Portraits") {
+      return categoryImages.filter(img => img.subCategory === activeSubCategory && img.isSubExclusive)
+    }
+
     return categoryImages
   })()
 
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category)
-    setActiveSubCategory("Traditional/Engagement")
+    if (category === "Weddings") {
+      setActiveSubCategory("Traditional/Engagement")
+    } else if (category === "Portraits") {
+      setActiveSubCategory("Fashion")
+    } else {
+      setActiveSubCategory("")
+    }
     setSelectedIndex(0)
   }
 
@@ -191,7 +219,13 @@ export function PortfolioSection() {
     <section id="portfolio" className="py-24 px-6 bg-background">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-16"
+        >
           <p className="text-muted-foreground tracking-[0.3em] uppercase text-sm mb-4">
             Selected Work
           </p>
@@ -202,10 +236,16 @@ export function PortfolioSection() {
             A collection of moments that speak to the heart of each celebration.
             Every image tells a story of love, joy, and connection.
           </p>
-        </div>
+        </motion.div>
 
         {/* Category Filter */}
-        <div className="space-y-12 mb-20 lg:mb-24">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10px" }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          className="space-y-12 mb-20 lg:mb-24"
+        >
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-12">
             {mainCategories.map((category, index) => {
               const types = ["type--A", "type--B", "type--C"]
@@ -217,14 +257,14 @@ export function PortfolioSection() {
                   isActive={activeCategory === category}
                   onClick={() => handleCategoryChange(category)}
                   type={type}
-                  hasSubcategories={category === "Weddings"}
+                  hasSubcategories={category === "Weddings" || category === "Portraits"}
                 />
               )
             })}
           </div>
 
-          {/* Sub-category Filter for Weddings — Editorial Tabs */}
-          {activeCategory === "Weddings" && (
+          {/* Sub-category Filter for Weddings & Portraits — Editorial Tabs */}
+          {(activeCategory === "Weddings" || activeCategory === "Portraits") && (
             <div className="flex flex-col items-center gap-6 animate-in fade-in slide-in-from-top-4 duration-700 w-full">
 
               {/* Decorative label row */}
@@ -239,21 +279,18 @@ export function PortfolioSection() {
               {/* Tab cards row */}
               <div
                 ref={tabsRef}
-                className="relative flex flex-wrap justify-center p-2 rounded-[30px] bg-secondary border border-border backdrop-blur-sm"
+                className="relative flex overflow-x-auto no-scrollbar justify-start sm:justify-center p-2 rounded-[30px] bg-secondary border border-border backdrop-blur-sm max-w-full"
               >
                 {/* Sliding Glass Pill Indicator */}
                 <div
+                  ref={indicatorRef}
                   className="absolute top-1.5 bottom-1.5 rounded-[24px] bg-background shadow-sm border border-border transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] z-0"
-                  style={{
-                    left: `${indicatorStyle.left}px`,
-                    width: `${indicatorStyle.width}px`,
-                  }}
                 >
                   {/* Internal shine/highlight for extra glass effect */}
                   <div className="absolute inset-0 rounded-[24px] bg-gradient-to-tr from-white/40 to-transparent opacity-50" />
                 </div>
 
-                {weddingSubCategories.map((sub, idx) => (
+                {(activeCategory === "Weddings" ? weddingSubCategories : portraitSubCategories).map((sub, idx) => (
                   <SubCategoryButton
                     key={sub}
                     category={sub}
@@ -265,12 +302,19 @@ export function PortfolioSection() {
               </div>
             </div>
           )}
-        </div>
+        </motion.div>
 
         {/* Gallery Grid - Masonry */}
         <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
           {filteredImages.map((image, index) => (
-            <div key={`${image.src}-${index}`} className="break-inside-avoid">
+            <motion.div
+              key={`${image.src}-${index}`}
+              className="break-inside-avoid"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: Math.min(index * 0.1, 0.5) }}
+            >
               <Dialog open={isOpen && selectedIndex === index} onOpenChange={(open) => {
                 setIsOpen(open)
                 if (open) setSelectedIndex(index)
@@ -351,14 +395,13 @@ export function PortfolioSection() {
                     <X className="h-5 w-5" />
                     <span className="sr-only">Close</span>
                   </Button>
-
                   {/* Image Counter */}
                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-background/10 backdrop-blur-sm px-4 py-2 rounded-full text-primary-foreground text-sm z-10">
                     {selectedIndex + 1} / {filteredImages.length}
                   </div>
                 </DialogContent>
               </Dialog>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

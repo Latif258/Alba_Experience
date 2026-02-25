@@ -1,6 +1,9 @@
+"use client"
+
 import { Camera, Heart, Users, VideoIcon, VideotapeIcon } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { motion } from "framer-motion"
 
 const services = [
   {
@@ -13,7 +16,7 @@ const services = [
     icon: Users,
     title: "Portraits",
     description: "Timeless family photography that freezes fleeting moments. Perfect for annual cards, maternity, newborn, or generational gatherings.",
-    image: "/portfolio/events/family-portrait-new.jpeg"
+    image: "/portfolio/portraits/family/portrait (14).avif"
   },
   {
     icon: Camera,
@@ -34,7 +37,13 @@ export function ServicesSection() {
     <section id="services" className="py-24 px-6 bg-[#fdfcfb]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-16"
+        >
           <p className="text-muted-foreground tracking-[0.3em] uppercase text-sm mb-4">
             Our Expertise
           </p>
@@ -45,12 +54,16 @@ export function ServicesSection() {
             We offer a comprehensive range of photography services, each tailored to
             honor the unique character of your occasion.
           </p>
-        </div>
+        </motion.div>
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service) => (
-            <div
+          {services.map((service, index) => (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
               key={service.title}
               className="group relative overflow-hidden rounded-3xl bg-background flex flex-col h-full shadow-neu-raised hover:shadow-neu transition-all duration-500"
             >
@@ -78,12 +91,18 @@ export function ServicesSection() {
                   {service.description}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Pricing Note */}
-        <div className="mt-16 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          className="mt-16 text-center"
+        >
           <p className="text-muted-foreground">
             Pricing varies based on coverage hours and deliverables.
             <Link href="/packages" className="text-primary hover:underline ml-1 font-medium">
@@ -93,7 +112,7 @@ export function ServicesSection() {
               Contact us
             </Link> for a custom quote.
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

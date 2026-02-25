@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Mail, Phone, MapPin, Instagram, Check } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 type ContactItem = {
@@ -99,7 +100,12 @@ export function ContactSection() {
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Info */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
             <p className="text-muted-foreground tracking-[0.3em] uppercase text-sm mb-4">
               Contact
             </p>
@@ -153,10 +159,16 @@ export function ContactSection() {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Quick Message */}
-          <div className="bg-card p-8 md:p-12 border border-border">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="bg-card p-8 md:p-12 border border-border"
+          >
             <div className="mb-8 p-6 bg-primary/5 border border-primary/20 text-center">
               <h3 className="text-xl font-light text-foreground mb-4">
                 Message us on WhatsApp
@@ -233,9 +245,9 @@ export function ContactSection() {
                 </form>
               </>
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section >
+    </section>
   )
 }
