@@ -9,6 +9,11 @@ const galleryData = [
         image: "/galleries/Ethel Engagement and Wedding_84.avif"
     },
     {
+        text: "KEJERON PARTY RET",
+        link: "https://alba-experience.client-gallery.com/gallery/kejeron-party-ret",
+        image: "/galleries/Kejeron Party Ret.avif"
+    },
+    {
         text: "PORTIA & JACOB",
         link: "https://alba-experience.client-gallery.com/gallery/portia-and-jacob",
         image: "/galleries/Portia & Jacob wedding.avif"
